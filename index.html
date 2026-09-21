@@ -118,7 +118,7 @@
 
           <div class="hall-switcher" role="tablist" aria-label="명예의 전당 디자인 선택">
             <button type="button" role="tab" id="puzzle-tab" aria-selected="true" aria-controls="puzzle-panel" tabindex="0">
-              <span aria-hidden="true">◫</span> 햇빛 창문 퍼즐
+              <span aria-hidden="true">◫</span> 캠퍼스 아트 퍼즐
             </button>
             <button type="button" role="tab" id="reset-tab" aria-selected="false" aria-controls="reset-panel" tabindex="-1">
               <span aria-hidden="true">↻</span> 801호 리셋 미션
@@ -131,22 +131,50 @@
           <div class="hall-stage">
             <div class="hall-panel puzzle-panel" id="puzzle-panel" role="tabpanel" aria-labelledby="puzzle-tab">
               <div class="panel-copy">
-                <span>WINDOW PUZZLE · 6/12</span>
+                <span>CAMPUS ART PUZZLE · 6/12</span>
                 <h3>12개의 조각 중<br />6개가 채워졌어요</h3>
-                <p>다음 조각의 이름을 기다려요.</p>
+                <p>그림의 나머지 절반은 다음 이름을 기다리고 있어요.</p>
               </div>
-              <div class="puzzle-wrap">
-                <div class="puzzle-scene" aria-hidden="true"><span class="puzzle-sun"></span><span class="puzzle-horizon"></span><span class="puzzle-desk"></span></div>
-                <div class="puzzle-grid" id="supporter-puzzle"></div>
+              <div class="jigsaw-wrap">
+                <svg class="jigsaw-svg" id="supporter-puzzle" viewBox="-34 -34 868 668" role="img" aria-label="12개 중 6개가 채워진 캠퍼스 풍경 퍼즐">
+                  <defs>
+                    <pattern id="campus-art" width="800" height="600" patternUnits="userSpaceOnUse">
+                      <rect width="800" height="600" fill="#77b8ed" />
+                      <circle cx="620" cy="125" r="82" fill="#ffd34f" />
+                      <path d="M0 330L120 225L235 315L355 175L505 325L650 220L800 315V600H0Z" fill="#5a8e78" stroke="#172337" stroke-width="13" stroke-linejoin="round" />
+                      <path d="M0 395L120 340L245 430L390 320L520 405L680 315L800 390V600H0Z" fill="#9cd37d" stroke="#172337" stroke-width="13" stroke-linejoin="round" />
+                      <path d="M332 600C330 530 365 470 425 420C475 378 512 360 548 327C480 420 475 515 500 600Z" fill="#f7e7b6" stroke="#172337" stroke-width="11" />
+                      <path d="M78 515V388H250V515M98 515V425H230V515" fill="#ff8d75" stroke="#172337" stroke-width="12" stroke-linejoin="round" />
+                      <path d="M65 388L165 312L264 388Z" fill="#f5f2eb" stroke="#172337" stroke-width="12" stroke-linejoin="round" />
+                      <rect x="126" y="447" width="80" height="68" rx="7" fill="#67a8ff" stroke="#172337" stroke-width="10" />
+                      <path d="M0 548H800" stroke="#172337" stroke-width="13" />
+                    </pattern>
+                  </defs>
+                </svg>
+                <p class="jigsaw-prompt"><span>6자리 남음</span> 다음 조각을 완성해 주세요</p>
               </div>
             </div>
 
             <div class="hall-panel reset-panel" id="reset-panel" role="tabpanel" aria-labelledby="reset-tab" hidden>
-              <div class="reset-hud"><span>ROOM 801 · LEVEL 01</span><strong>MISSION 6 / 12</strong></div>
-              <div class="reset-map">
-                <div class="map-board" aria-hidden="true">NETZERO 801</div>
-                <div class="mission-grid" id="supporter-missions"></div>
+              <div class="reset-hud">
+                <span>ROOM 801 · RESET COMPLETE</span>
+                <button type="button" class="replay-button" id="replay-missions"><span aria-hidden="true">↻</span> 전체 다시보기</button>
               </div>
+              <div class="classroom-sim" id="classroom-sim">
+                <div class="sim-wall" aria-hidden="true">
+                  <div class="sim-board"><span class="board-scribble">E = mc²&nbsp;&nbsp; NET ZERO?</span><i class="tool-eraser"></i></div>
+                  <div class="sim-window"><i></i><b></b></div>
+                  <div class="sim-light"><i></i></div>
+                </div>
+                <div class="sim-floor" aria-hidden="true">
+                  <span class="floor-dirt dirt-one"></span><span class="floor-dirt dirt-two"></span><span class="floor-dirt dirt-three"></span>
+                  <div class="tool-broom"><i></i></div>
+                  <div class="sim-chair chair-one"></div><div class="sim-chair chair-two"></div>
+                  <div class="sim-desk"><span class="loose-book book-one"></span><span class="loose-book book-two"></span><span class="book-stack"></span></div>
+                </div>
+                <div class="action-toast" id="action-toast" aria-live="polite"></div>
+              </div>
+              <div class="mission-dock" id="mission-dock" aria-label="완료된 교실 리셋 역할"></div>
               <p class="metaphor-note"><span>!</span> 후원금을 청소에 사용하는 것이 아니라, 참여가 더해지는 모습을 게임처럼 표현한 목업입니다.</p>
             </div>
 

@@ -103,6 +103,62 @@ a{color:inherit;text-decoration:none} button,a{-webkit-tap-highlight-color:trans
   .hall-note{text-align:left}
 }
 
+/* Real jigsaw reveal and animated 801 classroom reset. */
+.jigsaw-wrap{position:relative;min-width:0;padding:27px 27px 62px;background:#0b1423;border:1px solid #344258;border-radius:30px;box-shadow:0 26px 45px rgba(0,0,0,.25);transform:rotate(1deg)}
+.jigsaw-svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 16px 18px rgba(0,0,0,.28))}
+.jigsaw-piece{transform-box:fill-box;transform-origin:center;transition:transform .22s ease,filter .22s ease;outline:none}
+.jigsaw-piece.is-filled{cursor:default;animation:piece-arrive .5s calc(var(--piece-index) * 55ms) ease-out both}
+.jigsaw-piece.is-filled:hover,.jigsaw-piece.is-filled:focus-visible{z-index:5;filter:brightness(1.12) drop-shadow(0 12px 8px rgba(0,0,0,.28));transform:translateY(-9px) scale(1.025)}
+.jigsaw-piece.is-empty path{stroke-dasharray:14 11;animation:empty-stroke 2.6s ease-in-out infinite}
+.piece-name{fill:#111b29;font-family:inherit;font-size:21px;font-weight:900;letter-spacing:-.04em}
+.piece-plus{fill:var(--lime);font-family:inherit;font-size:49px;font-weight:300}
+.piece-next{fill:#9ca9ba;font-family:inherit;font-size:15px;font-weight:900;letter-spacing:.14em}
+.jigsaw-prompt{position:absolute;right:22px;bottom:17px;display:flex;align-items:center;gap:10px;margin:0;color:#a7b0be;font-size:10px;font-weight:800}
+.jigsaw-prompt span{padding:5px 9px;color:var(--navy);background:var(--lime);border-radius:999px;font-size:8px;font-weight:950;letter-spacing:.06em}
+@keyframes piece-arrive{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes empty-stroke{50%{stroke:#c9ff63;stroke-dashoffset:25}}
+
+.reset-panel{padding:24px;background:#101a2d}
+.replay-button{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;color:#111b29;background:var(--lime);border:0;border-radius:10px;font:inherit;font-size:9px;font-weight:950;letter-spacing:-.01em;cursor:pointer;transition:transform .18s ease,filter .18s ease}
+.replay-button:hover{filter:brightness(1.08);transform:translateY(-2px)}.replay-button:disabled{cursor:wait;filter:saturate(.2);opacity:.65}.replay-button span{font-size:14px}
+.classroom-sim{position:relative;height:425px;margin-top:13px;background:#e9e6dc;border:1px solid #48566d;border-radius:27px;box-shadow:inset 0 0 0 7px #22304a;overflow:hidden}
+.sim-wall{position:absolute;inset:7px 7px 42% 7px;background:linear-gradient(180deg,#f0eee7,#dddcd3)}
+.sim-wall::before{position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.7%,rgba(24,36,54,.05) 50%,transparent 50.3%);content:""}
+.sim-floor{position:absolute;right:7px;bottom:7px;left:7px;height:42%;background:repeating-linear-gradient(97deg,#c79869 0,#c79869 68px,#b78457 69px,#b78457 73px);clip-path:polygon(0 0,100% 0,94% 100%,6% 100%)}
+.sim-board{position:absolute;top:42px;left:7%;width:55%;height:135px;background:#1e5b48;border:10px solid #7b5a3c;border-radius:7px;box-shadow:0 9px 0 rgba(0,0,0,.1);overflow:hidden}
+.board-scribble{position:absolute;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.65);font-family:Georgia,serif;font-size:20px;font-weight:800;transform:rotate(-2deg);transition:opacity .35s ease}
+.tool-eraser{position:absolute;top:48px;left:-35px;width:49px;height:25px;background:#ff8d75;border:5px solid #19243a;border-radius:8px;opacity:0;z-index:3}
+.sim-window{position:absolute;top:35px;right:7%;width:25%;height:142px;background:#83c9f2;border:9px solid #fff;box-shadow:0 5px 0 rgba(0,0,0,.09);overflow:hidden;transition:transform .55s ease}
+.sim-window::before,.sim-window::after{position:absolute;z-index:2;background:#fff;content:""}.sim-window::before{top:0;bottom:0;left:48%;width:7px}.sim-window::after{top:48%;right:0;left:0;height:7px}
+.sim-window i{position:absolute;right:12px;bottom:-9px;width:72px;height:76px;background:#5d9b6d;clip-path:polygon(0 100%,18% 35%,34% 68%,50% 8%,70% 67%,83% 32%,100% 100%)}
+.sim-window b{position:absolute;top:11px;right:13px;width:37px;height:37px;background:var(--yellow);border-radius:50%;box-shadow:0 0 0 9px rgba(255,211,79,.2)}
+.sim-light{position:absolute;top:0;left:58%;width:86px;height:23px;background:#aaa;border:5px solid #28344a;border-radius:0 0 15px 15px;transform:translateX(-50%)}
+.sim-light::after{position:absolute;top:18px;left:50%;width:270px;height:200px;background:linear-gradient(180deg,rgba(255,240,166,.35),transparent);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);opacity:0;transform:translateX(-50%);content:"";transition:opacity .4s ease}
+.sim-light i{position:absolute;inset:3px 10px;background:#80858c;border-radius:8px;transition:background .3s ease,box-shadow .3s ease}
+.floor-dirt{position:absolute;width:55px;height:18px;background:#765c42;border-radius:50%;filter:blur(2px);opacity:0;transition:opacity .35s ease}.dirt-one{left:16%;bottom:24%}.dirt-two{left:39%;bottom:42%;width:35px}.dirt-three{right:20%;bottom:16%;width:44px}
+.tool-broom{position:absolute;z-index:8;left:8%;bottom:28%;width:23px;height:94px;opacity:0;transform:rotate(22deg);transform-origin:bottom center}.tool-broom::before{position:absolute;top:0;left:9px;width:6px;height:76px;background:#e5bf73;border:3px solid #1b263b;border-radius:6px;content:""}.tool-broom i{position:absolute;bottom:0;left:-10px;width:44px;height:27px;background:var(--yellow);border:4px solid #1b263b;border-radius:4px 4px 16px 16px}
+.sim-chair{position:absolute;z-index:4;bottom:14%;width:65px;height:68px;border:9px solid #24314a;border-top-width:30px;border-radius:11px;transition:transform .55s cubic-bezier(.2,.85,.3,1.15)}.sim-chair::before,.sim-chair::after{position:absolute;top:29px;width:7px;height:40px;background:#24314a;border-radius:4px;content:""}.sim-chair::before{left:4px}.sim-chair::after{right:4px}.chair-one{left:43%}.chair-two{left:58%}
+.sim-desk{position:absolute;z-index:5;right:8%;bottom:16%;width:175px;height:67px;background:#ee947e;border:8px solid #202d44;border-radius:14px}.sim-desk::before,.sim-desk::after{position:absolute;top:56px;width:9px;height:65px;background:#202d44;border-radius:4px;content:""}.sim-desk::before{left:17px;transform:rotate(4deg)}.sim-desk::after{right:17px;transform:rotate(-4deg)}
+.loose-book,.book-stack{position:absolute;border:4px solid #202d44;border-radius:5px}.loose-book{top:-30px;width:57px;height:27px;background:#67a8ff;opacity:0}.book-one{left:13px;transform:rotate(-11deg)}.book-two{right:10px;background:#ffd34f;transform:rotate(13deg)}.book-stack{top:-35px;left:50%;width:70px;height:34px;background:linear-gradient(#9d8cff 0 45%,#202d44 46% 57%,#69dec2 58%);transform:translateX(-50%);transition:opacity .25s ease}
+.action-toast{position:absolute;z-index:12;left:50%;bottom:17px;min-height:35px;padding:8px 15px;color:#fff;background:rgba(16,28,44,.92);border:1px solid #42516a;border-radius:999px;font-size:10px;font-weight:850;white-space:nowrap;transform:translateX(-50%);box-shadow:0 9px 24px rgba(0,0,0,.2)}
+.mission-dock{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:10px}.dock-role{display:flex;align-items:center;gap:8px;min-width:0;padding:8px;color:#94a0b2;background:#1b2940;border:1px solid #35445c;border-radius:13px;transition:background .2s ease,transform .2s ease,box-shadow .2s ease}.dock-role.is-active,.dock-role.is-complete{color:#111b29;background:var(--accent);border-color:#111b29;box-shadow:0 4px 0 #0a1424;transform:translateY(-3px)}.dock-icon{display:grid;place-items:center;flex:0 0 auto;width:28px;height:28px;background:#0e1829;border-radius:8px;font-size:14px}.dock-role>span:last-child{display:grid;min-width:0}.dock-role strong{font-size:8px;white-space:nowrap}.dock-role small{font-size:6px;white-space:nowrap;opacity:.66}
+.classroom-sim[data-action="0"] .tool-broom{opacity:1;animation:sweep-floor 1.7s ease-in-out both}.classroom-sim[data-action="1"] .tool-eraser{opacity:1;animation:wipe-board 1.7s ease-in-out both}.classroom-sim[data-action="2"] .sim-chair{animation:chair-snap .9s ease-out both}.classroom-sim[data-action="3"] .sim-window{animation:window-open 1.2s ease-in-out both}.classroom-sim[data-action="4"] .sim-light i{background:#fff2a8;box-shadow:0 0 22px #ffe875}.classroom-sim[data-action="4"] .sim-light::after{opacity:1}.classroom-sim[data-action="5"] .loose-book{opacity:1;animation:book-tidy 1.25s ease-in-out both}.classroom-sim[data-action="5"] .book-stack{animation:stack-pop 1.25s ease-in-out both}
+.classroom-sim.is-replaying .floor-dirt{opacity:.72}.classroom-sim.is-replaying .board-scribble{opacity:1}.classroom-sim.is-replaying .chair-one{transform:translate(-45px,20px) rotate(-22deg)}.classroom-sim.is-replaying .chair-two{transform:translate(42px,15px) rotate(17deg)}.classroom-sim.is-replaying .sim-window{filter:saturate(.35);transform:scaleX(.83);transform-origin:right}.classroom-sim.is-replaying .loose-book{opacity:1}.classroom-sim.is-replaying .book-stack{opacity:0}.classroom-sim.is-replaying.done-0 .floor-dirt{opacity:0}.classroom-sim.is-replaying.done-1 .board-scribble{opacity:0}.classroom-sim.is-replaying.done-2 .sim-chair{transform:none}.classroom-sim.is-replaying.done-3 .sim-window{filter:none;transform:none}.classroom-sim.is-replaying.done-4 .sim-light i{background:#fff2a8;box-shadow:0 0 22px #ffe875}.classroom-sim.is-replaying.done-4 .sim-light::after{opacity:1}.classroom-sim.is-replaying.done-5 .loose-book{opacity:0}.classroom-sim.is-replaying.done-5 .book-stack{opacity:1}
+@keyframes sweep-floor{0%{left:8%;transform:rotate(22deg)}25%{transform:rotate(-18deg)}50%{left:41%;transform:rotate(21deg)}75%{transform:rotate(-15deg)}100%{left:70%;transform:rotate(18deg)}}
+@keyframes wipe-board{0%{left:-35px;top:80px}25%{left:25%;top:30px}50%{left:48%;top:88px}75%{left:70%;top:28px}100%{left:105%;top:75px}}
+@keyframes chair-snap{0%{filter:brightness(1)}50%{transform:translateY(-16px) rotate(-5deg);filter:brightness(1.35)}100%{transform:none}}
+@keyframes window-open{0%{transform:scaleX(.83);transform-origin:right}60%{transform:scaleX(1.06);filter:brightness(1.15)}100%{transform:none}}
+@keyframes book-tidy{0%{opacity:1}55%{top:-60px;left:50%;transform:translateX(-50%) rotate(0)}100%{opacity:0;top:-35px;left:50%;transform:translateX(-50%)}}
+@keyframes stack-pop{0%,55%{opacity:0;transform:translateX(-50%) scale(.7)}100%{opacity:1;transform:translateX(-50%) scale(1)}}
+
+@media(max-width:900px){
+  .puzzle-panel{grid-template-columns:1fr}.jigsaw-wrap{width:min(100%,680px);margin-inline:auto}.classroom-sim{height:455px}.mission-dock{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:600px){
+  .jigsaw-wrap{padding:16px 16px 55px;border-radius:21px}.piece-name{font-size:18px}.piece-plus{font-size:40px}.piece-next{font-size:12px}.jigsaw-prompt{right:14px;bottom:14px;left:14px;justify-content:center;font-size:8px}
+  .reset-panel{padding:12px}.reset-hud{height:auto;min-height:48px;gap:8px}.replay-button{padding:7px 9px;font-size:8px}.classroom-sim{height:455px;border-radius:19px}.sim-board{top:44px;left:6%;width:57%;height:115px;border-width:7px}.board-scribble{font-size:13px}.sim-window{top:41px;right:5%;width:27%;height:117px;border-width:6px}.sim-light{left:60%}.sim-floor{height:46%}.sim-wall{bottom:46%}.sim-chair{bottom:20%;width:49px;height:58px;border-width:7px;border-top-width:25px}.chair-one{left:34%}.chair-two{left:51%}.sim-desk{right:5%;bottom:14%;width:124px;height:56px;border-width:6px}.sim-desk::before,.sim-desk::after{top:47px;height:51px}.loose-book{width:43px}.book-stack{width:58px}.mission-dock{grid-template-columns:repeat(2,1fr)}.dock-role{padding:7px}.action-toast{max-width:90%;white-space:normal;text-align:center}.metaphor-note{margin-top:10px}
+}
+
 /* Incomplete Hall of Energy — three completion-driven concepts. */
 .hall-stats{display:grid;grid-template-columns:repeat(2,minmax(0,240px));gap:10px;margin-top:38px}
 .hall-stats>div{display:grid;grid-template-columns:1fr auto;gap:9px 18px;align-items:end;padding:17px 18px;background:#242034;border:1px solid #39334d;border-radius:18px}
