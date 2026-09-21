@@ -103,7 +103,7 @@
           <div class="hall-heading">
             <div>
               <p class="kicker light"><span></span> HALL OF ENERGY</p>
-              <h2 id="hall-title">이 교실을 함께<br />밝힌 사람들</h2>
+              <h2 id="hall-title">아직, 완성되지<br />않은 교실</h2>
             </div>
             <div class="hall-meta">
               <span class="mockup-names">목업용 예시 명단</span>
@@ -111,37 +111,56 @@
             </div>
           </div>
 
+          <div class="hall-stats" aria-label="명예의 전당 목업 현황">
+            <div><span>공개 참여</span><strong>6 <small>/ 12명</small></strong><i><b style="width:50%"></b></i></div>
+            <div><span>모금 진행률</span><strong>42<small>%</small></strong><i><b style="width:42%"></b></i></div>
+          </div>
+
           <div class="hall-switcher" role="tablist" aria-label="명예의 전당 디자인 선택">
-            <button type="button" role="tab" id="seat-tab" aria-selected="true" aria-controls="seat-panel" tabindex="0">
-              <span aria-hidden="true">▦</span> 빛나는 교실 좌석
+            <button type="button" role="tab" id="puzzle-tab" aria-selected="true" aria-controls="puzzle-panel" tabindex="0">
+              <span aria-hidden="true">◫</span> 햇빛 창문 퍼즐
             </button>
-            <button type="button" role="tab" id="star-tab" aria-selected="false" aria-controls="star-panel" tabindex="-1">
-              <span aria-hidden="true">✦</span> 에너지 별자리
+            <button type="button" role="tab" id="reset-tab" aria-selected="false" aria-controls="reset-panel" tabindex="-1">
+              <span aria-hidden="true">↻</span> 801호 리셋 미션
+            </button>
+            <button type="button" role="tab" id="board-tab" aria-selected="false" aria-controls="board-panel" tabindex="-1">
+              <span aria-hidden="true">▤</span> 칠판 메시지
             </button>
           </div>
 
           <div class="hall-stage">
-            <div class="hall-panel seat-panel" id="seat-panel" role="tabpanel" aria-labelledby="seat-tab">
-              <div class="classroom-board" aria-hidden="true"><span>801</span><i></i><i></i></div>
-              <div class="supporter-seats" id="supporter-seats"></div>
-              <p class="stage-caption"><span></span> 참여가 모일 때마다 교실에 새로운 불이 켜져요.</p>
+            <div class="hall-panel puzzle-panel" id="puzzle-panel" role="tabpanel" aria-labelledby="puzzle-tab">
+              <div class="panel-copy">
+                <span>WINDOW PUZZLE · 6/12</span>
+                <h3>12개의 조각 중<br />6개가 채워졌어요</h3>
+                <p>다음 조각의 이름을 기다려요.</p>
+              </div>
+              <div class="puzzle-wrap">
+                <div class="puzzle-scene" aria-hidden="true"><span class="puzzle-sun"></span><span class="puzzle-horizon"></span><span class="puzzle-desk"></span></div>
+                <div class="puzzle-grid" id="supporter-puzzle"></div>
+              </div>
             </div>
 
-            <div class="hall-panel star-panel" id="star-panel" role="tabpanel" aria-labelledby="star-tab" hidden>
-              <div class="starfield" id="supporter-stars">
-                <svg class="constellation-lines constellation-desktop" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
-                  <path d="M150 145 L395 90 L570 200 L820 115 L750 365 L430 410 L150 145" />
-                  <path d="M395 90 L430 410 M570 200 L750 365" />
-                </svg>
-                <svg class="constellation-lines constellation-mobile" viewBox="0 0 320 650" preserveAspectRatio="none" aria-hidden="true">
-                  <path d="M78 75 L235 150 L95 255 L240 355 L82 470 L225 570" />
-                  <path d="M78 75 L95 255 M235 150 L240 355 M95 255 L82 470" />
-                </svg>
+            <div class="hall-panel reset-panel" id="reset-panel" role="tabpanel" aria-labelledby="reset-tab" hidden>
+              <div class="reset-hud"><span>ROOM 801 · LEVEL 01</span><strong>MISSION 6 / 12</strong></div>
+              <div class="reset-map">
+                <div class="map-board" aria-hidden="true">NETZERO 801</div>
+                <div class="mission-grid" id="supporter-missions"></div>
               </div>
-              <p class="stage-caption"><span></span> 각자의 선택이 이어져 하나의 에너지 별자리가 됩니다.</p>
+              <p class="metaphor-note"><span>!</span> 후원금을 청소에 사용하는 것이 아니라, 참여가 더해지는 모습을 게임처럼 표현한 목업입니다.</p>
+            </div>
+
+            <div class="hall-panel board-panel" id="board-panel" role="tabpanel" aria-labelledby="board-tab" hidden>
+              <div class="chalkboard">
+                <div class="chalkboard-head"><span>오늘의 문장</span><strong>6 / 12 글자</strong></div>
+                <p class="message-preview">우리도 에너지를 함께 선택해</p>
+                <div class="message-grid" id="supporter-message"></div>
+                <div class="chalk-doodles" aria-hidden="true"><span>✦</span><i>→</i><b>CHOICE!</b></div>
+              </div>
+              <p class="board-caption">빈 글자에 다음 참여자의 이름이 새겨져요.</p>
             </div>
           </div>
-          <p class="hall-note">금액이나 순위 없이, 모든 이름을 같은 크기로 기록합니다.</p>
+          <p class="hall-note">공개 참여 수와 모금 진행률은 별도 지표입니다. 금액이나 순위 없이 모든 이름을 같은 크기로 기록합니다.</p>
         </div>
       </section>
 

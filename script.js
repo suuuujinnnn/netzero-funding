@@ -1,32 +1,64 @@
 const supporters = [
-  { name: "김하늘", accent: "#c9ff63" },
-  { name: "이로운", accent: "#67a8ff" },
-  { name: "박다온", accent: "#ff8d75" },
-  { name: "최윤슬", accent: "#ffd34f" },
-  { name: "정한결", accent: "#9d8cff" },
-  { name: "송나래", accent: "#69dec2" },
+  { name: "김하늘", accent: "#c9ff63", task: "종이컵 치우기" },
+  { name: "이로운", accent: "#67a8ff", task: "의자 제자리" },
+  { name: "박다온", accent: "#ff8d75", task: "칠판 닦기" },
+  { name: "최윤슬", accent: "#ffd34f", task: "창문 열기" },
+  { name: "정한결", accent: "#9d8cff", task: "사용하지 않는 조명 끄기" },
+  { name: "송나래", accent: "#69dec2", task: "책상 정돈" },
 ];
 
-const seats = document.querySelector("#supporter-seats");
-const stars = document.querySelector("#supporter-stars");
+const supporterGoal = 12;
+const futureTasks = ["바닥 정리", "분리배출", "창가 정돈", "책상 닦기", "케이블 정리", "마지막 점검"];
+const message = ["우", "리", "도", "에", "너", "지", "를", "함", "께", "선", "택", "해"];
 
-supporters.forEach(({ name, accent }, index) => {
-  const seat = document.createElement("article");
-  seat.className = "supporter-seat";
-  seat.style.setProperty("--supporter-accent", accent);
-  seat.innerHTML = `
-    <span class="seat-light" aria-hidden="true"><i></i></span>
-    <span class="supporter-name">${name}<small>예시</small></span>
-    <span class="seat-desk" aria-hidden="true"><i></i><b></b></span>
-  `;
-  seats.append(seat);
+const puzzle = document.querySelector("#supporter-puzzle");
+const missions = document.querySelector("#supporter-missions");
+const messageBoard = document.querySelector("#supporter-message");
 
-  const star = document.createElement("div");
-  star.className = `supporter-star supporter-star-${index + 1}`;
-  star.style.setProperty("--supporter-accent", accent);
-  star.innerHTML = `<i aria-hidden="true">✦</i><span>${name}<small>예시</small></span>`;
-  stars.append(star);
-});
+for (let index = 0; index < supporterGoal; index += 1) {
+  const supporter = supporters[index];
+
+  const piece = document.createElement("div");
+  piece.className = supporter ? "puzzle-piece is-filled" : "puzzle-piece is-empty";
+  piece.style.setProperty("--piece-index", index);
+  if (supporter) {
+    piece.style.setProperty("--supporter-accent", supporter.accent);
+    piece.innerHTML = `<span>${supporter.name}<small>예시</small></span><i aria-hidden="true">✓</i>`;
+  } else {
+    piece.innerHTML = `<span>NEXT</span><i aria-hidden="true">+</i>`;
+  }
+  puzzle.append(piece);
+
+  const mission = document.createElement("article");
+  mission.className = supporter ? "mission is-complete" : "mission is-locked";
+  mission.style.setProperty("--mission-index", index);
+  if (supporter) {
+    mission.style.setProperty("--supporter-accent", supporter.accent);
+    mission.innerHTML = `
+      <span class="mission-status" aria-hidden="true">✓</span>
+      <div><small>MISSION ${String(index + 1).padStart(2, "0")}</small><strong>${supporter.task}</strong></div>
+      <span class="mission-player">${supporter.name}<small>예시</small></span>
+    `;
+  } else {
+    mission.innerHTML = `
+      <span class="mission-status" aria-hidden="true">?</span>
+      <div><small>MISSION ${String(index + 1).padStart(2, "0")}</small><strong>${futureTasks[index - supporters.length]}</strong></div>
+      <span class="mission-player">도움 필요</span>
+    `;
+  }
+  missions.append(mission);
+
+  const tile = document.createElement("div");
+  tile.className = supporter ? "message-tile is-filled" : "message-tile is-empty";
+  tile.style.setProperty("--tile-index", index);
+  if (supporter) {
+    tile.style.setProperty("--supporter-accent", supporter.accent);
+    tile.innerHTML = `<strong>${message[index]}</strong><span>${supporter.name}<small>예시</small></span>`;
+  } else {
+    tile.innerHTML = `<strong>${message[index]}</strong><span>다음 참여로 채워져요</span>`;
+  }
+  messageBoard.append(tile);
+}
 
 const tabs = [...document.querySelectorAll('[role="tab"]')];
 const panels = tabs.map((tab) => document.querySelector(`#${tab.getAttribute("aria-controls")}`));
