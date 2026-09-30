@@ -9,6 +9,7 @@ export default defineConfig([
   prettier,
   globalIgnores([
     ".next/**",
+    ".pnpm-store/**",
     "out/**",
     "coverage/**",
     ".playwright-cli/**",

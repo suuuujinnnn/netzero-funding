@@ -1,11 +1,11 @@
 # 프론트엔드 아키텍처
 
-이 문서는 `veily-web`의 Feature-Sliced Design(FSD) 레이어 원칙을 넷제로 펀딩 화면에 맞게 옮긴 **구현 기준**입니다. 현재 저장소에는 `src/`나 Next.js 앱이 없으며, 아래 구조는 프론트엔드 구축 시 적용할 목표 구조입니다.
+이 문서는 `veily-web`의 Feature-Sliced Design(FSD) 레이어 원칙을 넷제로 펀딩 화면에 맞게 옮긴 **구현 기준**입니다. Next.js 앱의 초기 설정은 마련했으며, 아래 기능별 구조는 v4 화면 구현 시 적용합니다.
 
 ## 기술 구성
 
 - Next.js App Router, React, strict TypeScript, Tailwind CSS v4를 기본 구성으로 삼습니다. Vercel 배포는 이 구성을 기준으로 준비합니다.
-- 실제 설치 버전은 프론트엔드 생성 후 `package.json`에 고정합니다. `veily-web`의 버전이나 의존성을 그대로 복사하지 않습니다.
+- 실제 설치 버전은 `package.json`과 `pnpm-lock.yaml`에 기록합니다. `veily-web`의 버전이나 의존성을 그대로 복사하지 않습니다.
 - shadcn/ui의 `new-york` 스타일과 CSS 변수, Lucide 아이콘을 기본 UI 설정으로 채택합니다. 실제 컴포넌트는 필요한 것만 추가하고 v4 디자인 토큰에 맞춥니다. 초기 설정은 `components.json`에 있습니다.
 - 현재 백엔드/API 계약은 정해져 있지 않습니다. 모금액, 참여 내역, 계좌, 폼 연결을 API로 가정하지 않습니다.
 
@@ -42,15 +42,15 @@ app → views → widgets → features → entities → shared
 
 ## 새 코드 배치 기준
 
-| 코드 | 위치 예시 |
-| --- | --- |
-| 공통 버튼·다이얼로그 | `shared/ui/` |
-| 범용 헬퍼·설정 | `shared/lib/`, `shared/config/` |
-| 탭 전환·계좌 복사 | `features/project-tabs/`, `features/copy-account/` |
-| 여러 기능이 공유하는 프로젝트 데이터 모델 | `entities/project/` |
-| 여러 화면이 공유하는 상단바 | `widgets/site-header/` |
-| 프로젝트 소개 화면 조합 | `views/project/` |
-| 라우트·layout·전역 Provider | `app/` |
+| 코드                                      | 위치 예시                                          |
+| ----------------------------------------- | -------------------------------------------------- |
+| 공통 버튼·다이얼로그                      | `shared/ui/`                                       |
+| 범용 헬퍼·설정                            | `shared/lib/`, `shared/config/`                    |
+| 탭 전환·계좌 복사                         | `features/project-tabs/`, `features/copy-account/` |
+| 여러 기능이 공유하는 프로젝트 데이터 모델 | `entities/project/`                                |
+| 여러 화면이 공유하는 상단바               | `widgets/site-header/`                             |
+| 프로젝트 소개 화면 조합                   | `views/project/`                                   |
+| 라우트·layout·전역 Provider               | `app/`                                             |
 
 ## 렌더링과 상태
 
@@ -63,4 +63,3 @@ app → views → widgets → features → entities → shared
 ## 현재 목업과 실제 운영의 경계
 
 `docs/mockup/v4.html`의 모금률 50%, 400,000원, 132건 참여, 일정, 계좌, 폼 안내는 목업 또는 미확정 정보입니다. 실제 배포 화면에 표시할 값과 입금 안내는 운영 정보가 확정된 뒤 연결합니다. 확정 전에는 목업임을 분명히 표시하고 실제 송금을 유도하지 않습니다. API와 배포 시 필요한 결정은 [API 경계](api-boundary.md)에 기록합니다.
-

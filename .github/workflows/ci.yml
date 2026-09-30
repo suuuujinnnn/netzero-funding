@@ -20,24 +20,14 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: "24"
-          package-manager-cache: false
 
-      - name: Check current mockup and documentation
-        run: node scripts/agent-doctor.mjs
-
-      - name: Set up pnpm after frontend package is added
-        if: ${{ hashFiles('package.json') != '' }}
+      - name: Set up pnpm
         uses: pnpm/action-setup@v6
+        with:
+          version: 11.24.0
 
       - name: Install frontend dependencies
-        if: ${{ hashFiles('package.json') != '' }}
         run: pnpm install --frozen-lockfile
 
-      - name: Check formatting, lint, types, tests, and build
-        if: ${{ hashFiles('package.json') != '' }}
-        run: |
-          pnpm format:check
-          pnpm lint
-          pnpm typecheck
-          pnpm test
-          pnpm build
+      - name: Check documentation, formatting, lint, types, and build
+        run: pnpm agent:verify

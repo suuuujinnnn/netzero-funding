@@ -1,4 +1,7 @@
 node_modules
+.pnpm-store
+next-env.d.ts
+.agents
 .next
 out
 coverage
@@ -7,6 +10,7 @@ coverage
 pnpm-lock.yaml
 assets
 docs/mockup/exports
+deploy/index.html
 docs/*.jpg
 docs/*.pdf
 

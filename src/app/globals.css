@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --ink: #1b2925;
+  --muted: #62716b;
+  --green: #234a3c;
+  --lime: #d7ed9f;
+  --paper: #f5f6f2;
+  --white: #ffffff;
+  --line: #dce2db;
+  --focus: #9abd5c;
+}
+
+@theme inline {
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-primary: var(--green);
+  --color-primary-foreground: var(--white);
+  --color-accent: var(--lime);
+  --color-accent-foreground: var(--ink);
+  --color-border: var(--line);
+  --color-muted-foreground: var(--muted);
+  --color-ring: var(--focus);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family:
+    "Pretendard Variable", Pretendard, "SUIT Variable", SUIT, "Noto Sans KR",
+    "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  word-break: keep-all;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
