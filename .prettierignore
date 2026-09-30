@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+coverage
+.playwright-cli
+.vercel
+pnpm-lock.yaml
+assets
+docs/mockup/exports
+docs/*.jpg
+docs/*.pdf
+
+# 프론트엔드 이식 전의 정적 목업 원본
+docs/mockup/*.html
+docs/mockup/*.js
+docs/mockup/*.css

@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#101c2c" />
     <meta name="description" content="강의실의 전력 사용량을 알아보고 그만큼의 재생에너지 환경가치를 함께 구매하는 대학생 참여 캠페인" />
     <title>넷제로 교실 만들기</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="v1.css" />
   </head>
   <body>
     <header class="site-header">
@@ -87,9 +87,9 @@
         </div>
         <div class="funding-card">
           <div class="sample-badge">MOCKUP DATA</div>
-          <div class="funding-topline"><div><span>지금까지 모인 금액</span><strong>420,000<small>원</small></strong></div><strong class="percent">42%</strong></div>
-          <div class="progress" aria-label="목업용 모금 진행률 42%"><span></span><i></i></div>
-          <div class="goal-line"><span>0원</span><span>목표 1,000,000원</span></div>
+          <div class="funding-topline"><div><span>지금까지 모인 금액</span><strong>400,000<small>원</small></strong></div><strong class="percent">50%</strong></div>
+          <div class="progress" aria-label="목업용 모금 진행률 50%"><span></span><i></i></div>
+          <div class="goal-line"><span>0원</span><span>목표 800,000원</span></div>
           <p class="sample-note">금액과 진행률은 디자인 확인을 위한 예시입니다.</p>
           <ol class="join-flow" aria-label="참여 순서"><li><b>1</b><span>계좌이체</span></li><li><b>2</b><span>내역 제출</span></li><li><b>3</b><span>입금 확인</span></li></ol>
           <div class="account-row"><div><span>후원 계좌</span><strong>계좌 정보 추후 안내</strong><small>예금주 · 추후 안내</small></div><button type="button" disabled aria-label="계좌번호 복사, 현재 이용 불가">복사</button></div>
@@ -113,56 +113,18 @@
 
           <div class="hall-stats" aria-label="명예의 전당 목업 현황">
             <div><span>공개 참여</span><strong>6 <small>/ 12명</small></strong><i><b style="width:50%"></b></i></div>
-            <div><span>모금 진행률</span><strong>42<small>%</small></strong><i><b style="width:42%"></b></i></div>
-          </div>
-
-          <div class="hall-switcher" role="tablist" aria-label="명예의 전당 디자인 선택">
-            <button type="button" role="tab" id="puzzle-tab" aria-selected="true" aria-controls="puzzle-panel" tabindex="0">
-              <span aria-hidden="true">◫</span> 캠퍼스 아트 퍼즐
-            </button>
-            <button type="button" role="tab" id="reset-tab" aria-selected="false" aria-controls="reset-panel" tabindex="-1">
-              <span aria-hidden="true">↻</span> 801호 리셋 미션
-            </button>
-            <button type="button" role="tab" id="board-tab" aria-selected="false" aria-controls="board-panel" tabindex="-1">
-              <span aria-hidden="true">▤</span> 칠판 메시지
-            </button>
+            <div><span>모금 진행률</span><strong>50<small>%</small></strong><i><b style="width:50%"></b></i></div>
           </div>
 
           <div class="hall-stage">
-            <div class="hall-panel puzzle-panel" id="puzzle-panel" role="tabpanel" aria-labelledby="puzzle-tab">
-              <div class="panel-copy">
-                <span>CAMPUS ART PUZZLE · 6/12</span>
-                <h3>12개의 조각 중<br />6개가 채워졌어요</h3>
-                <p>그림의 나머지 절반은 다음 이름을 기다리고 있어요.</p>
-              </div>
-              <div class="jigsaw-wrap">
-                <svg class="jigsaw-svg" id="supporter-puzzle" viewBox="-34 -34 868 668" role="img" aria-label="12개 중 6개가 채워진 캠퍼스 풍경 퍼즐">
-                  <defs>
-                    <pattern id="campus-art" width="800" height="600" patternUnits="userSpaceOnUse">
-                      <rect width="800" height="600" fill="#77b8ed" />
-                      <circle cx="620" cy="125" r="82" fill="#ffd34f" />
-                      <path d="M0 330L120 225L235 315L355 175L505 325L650 220L800 315V600H0Z" fill="#5a8e78" stroke="#172337" stroke-width="13" stroke-linejoin="round" />
-                      <path d="M0 395L120 340L245 430L390 320L520 405L680 315L800 390V600H0Z" fill="#9cd37d" stroke="#172337" stroke-width="13" stroke-linejoin="round" />
-                      <path d="M332 600C330 530 365 470 425 420C475 378 512 360 548 327C480 420 475 515 500 600Z" fill="#f7e7b6" stroke="#172337" stroke-width="11" />
-                      <path d="M78 515V388H250V515M98 515V425H230V515" fill="#ff8d75" stroke="#172337" stroke-width="12" stroke-linejoin="round" />
-                      <path d="M65 388L165 312L264 388Z" fill="#f5f2eb" stroke="#172337" stroke-width="12" stroke-linejoin="round" />
-                      <rect x="126" y="447" width="80" height="68" rx="7" fill="#67a8ff" stroke="#172337" stroke-width="10" />
-                      <path d="M0 548H800" stroke="#172337" stroke-width="13" />
-                    </pattern>
-                  </defs>
-                </svg>
-                <p class="jigsaw-prompt"><span>6자리 남음</span> 다음 조각을 완성해 주세요</p>
-              </div>
-            </div>
-
-            <div class="hall-panel reset-panel" id="reset-panel" role="tabpanel" aria-labelledby="reset-tab" hidden>
+            <div class="hall-panel reset-panel" id="reset-panel">
               <div class="reset-hud">
-                <span>ROOM 801 · RESET COMPLETE</span>
+                <span><strong>801호 리셋 미션</strong><small>ROOM 801 · RESET COMPLETE</small></span>
                 <button type="button" class="replay-button" id="replay-missions"><span aria-hidden="true">↻</span> 전체 다시보기</button>
               </div>
               <div class="classroom-sim" id="classroom-sim">
                 <div class="sim-wall" aria-hidden="true">
-                  <div class="sim-board"><span class="board-scribble">E = mc²&nbsp;&nbsp; NET ZERO?</span><i class="tool-eraser"></i></div>
+                  <div class="sim-board"><span class="board-scribble"></span><i class="tool-eraser"></i></div>
                   <div class="sim-window"><i></i><b></b></div>
                   <div class="sim-light"><i></i></div>
                 </div>
@@ -176,16 +138,6 @@
               </div>
               <div class="mission-dock" id="mission-dock" aria-label="완료된 교실 리셋 역할"></div>
               <p class="metaphor-note"><span>!</span> 후원금을 청소에 사용하는 것이 아니라, 참여가 더해지는 모습을 게임처럼 표현한 목업입니다.</p>
-            </div>
-
-            <div class="hall-panel board-panel" id="board-panel" role="tabpanel" aria-labelledby="board-tab" hidden>
-              <div class="chalkboard">
-                <div class="chalkboard-head"><span>오늘의 문장</span><strong>6 / 12 글자</strong></div>
-                <p class="message-preview">우리도 에너지를 함께 선택해</p>
-                <div class="message-grid" id="supporter-message"></div>
-                <div class="chalk-doodles" aria-hidden="true"><span>✦</span><i>→</i><b>CHOICE!</b></div>
-              </div>
-              <p class="board-caption">빈 글자에 다음 참여자의 이름이 새겨져요.</p>
             </div>
           </div>
           <p class="hall-note">공개 참여 수와 모금 진행률은 별도 지표입니다. 금액이나 순위 없이 모든 이름을 같은 크기로 기록합니다.</p>
@@ -213,6 +165,6 @@
       <div><a class="brand footer-brand" href="#top"><span class="brand-icon" aria-hidden="true"><i></i></span><span>넷제로 교실</span></a><p>우리가 쓰는 교실에서, 우리가 선택하는 에너지로.</p></div>
       <span class="footer-contact">문의 · 추후 안내</span>
     </footer>
-    <script src="script.js"></script>
+    <script src="v1.js"></script>
   </body>
 </html>
