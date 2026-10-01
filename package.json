@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "agent:doctor": "node scripts/agent-doctor.mjs",
-    "agent:verify": "pnpm agent:doctor && pnpm format:check && pnpm lint && pnpm typecheck && pnpm build"
+    "agent:verify": "pnpm agent:doctor && pnpm format:check && pnpm lint && pnpm typecheck && pnpm test:funding && pnpm build",
+    "test:funding": "node --experimental-strip-types --test tests/funding.test.mjs"
   },
   "packageManager": "pnpm@11.24.0",
   "engines": {
