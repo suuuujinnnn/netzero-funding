@@ -24,14 +24,12 @@ export function LiveProject({
     donate: ReactNode;
   };
 }) {
-  const url = process.env.NEXT_PUBLIC_FUNDING_CSV_URL?.trim() ?? "";
   const [state, setState] = useState<FundingState>(() => ({
-    data: url ? null : INITIAL_FUNDING,
-    status: url ? "loading" : "unconfigured",
+    data: null,
+    status: "loading",
     checkedAt: null,
   }));
   useEffect(() => {
-    if (!url) return;
     let disposed = false;
     let active: AbortController | null = null;
     const refresh = async () => {
@@ -40,13 +38,19 @@ export function LiveProject({
       active = controller;
       const timeout = window.setTimeout(() => controller.abort(), 15000);
       try {
-        const data = await loadFunding(url, controller.signal);
+        const result = await loadFunding(controller.signal);
         if (!disposed)
-          setState({
-            data,
-            status: "ready",
-            checkedAt: new Date().toISOString(),
-          });
+          setState((previous) =>
+            result.status === "ready"
+              ? result
+              : previous.checkedAt
+                ? { ...previous, status: "error" }
+                : {
+                    data: INITIAL_FUNDING,
+                    status: "unconfigured",
+                    checkedAt: null,
+                  },
+          );
       } catch {
         if (!disposed)
           setState((previous) => ({ ...previous, status: "error" }));
@@ -62,13 +66,20 @@ export function LiveProject({
       window.clearInterval(interval);
       active?.abort();
     };
-  }, [url]);
+  }, []);
   return (
     <>
       <section className="hero" aria-label="모금 현황">
         {heroImage}
         <div className="hero-inner">
-          <p className="hero-kicker">국민대 넷제로 강의실 만들기 프로젝트</p>
+          <p className="hero-kicker">
+            <span className="hero-title-intro">국민대</span>{" "}
+            <strong className="hero-title-main">
+              <span>넷제로</span> 강의실{" "}
+              <small className="hero-title-action">만들기</small>
+            </strong>{" "}
+            <span className="hero-title-outro">프로젝트</span>
+          </p>
           <div className="hero-progress">
             <div className="hero-progress-labels">
               <strong>
