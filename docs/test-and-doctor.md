@@ -8,7 +8,7 @@ Next.js 초기 설정과 `package.json`을 만들었습니다. [agent doctor 스
 node scripts/agent-doctor.mjs
 ```
 
-doctor는 필요한 문서·앱 설정과 v4 원본 HTML·CSS·JavaScript, v1~v4 단일 파일, 배포용 `deploy/index.html`의 존재를 확인합니다. 배포 파일이 홈 링크를 제외하고 v4 export와 동일한지, Markdown의 로컬 링크, 목업의 자산 경로와 탭/패널 ARIA 연결도 확인합니다. v4에는 사용자가 제공한 `assets/univ.jpg`가 원본과 export에 연결됐는지, 다른 버전에는 이전 캠퍼스 사진이 남아 있지 않은지도 검사합니다. 잠금 파일과 pnpm 버전·패키지 명령도 확인하지만 브라우저 동작을 검증하지는 않습니다.
+doctor는 프론트엔드 설정, 아이콘·공개 자산·주요 화면 파일, Markdown 로컬 링크와 보존된 디자인 원본의 연결을 검사합니다. 이전 정적 HTML 배포 파일의 존재나 내용 일치는 운영 프론트엔드의 필수 조건으로 검사하지 않습니다. 잠금 파일과 패키지 명령도 확인하지만 브라우저 동작은 별도로 검증합니다.
 
 CI는 잠금 파일로 의존성을 설치하고 `pnpm agent:verify`를 실행합니다. 이 명령은 doctor·포맷·lint·타입 검사·빌드를 순서대로 실행합니다.
 

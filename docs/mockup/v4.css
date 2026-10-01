@@ -342,3 +342,31 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   .classroom-sim *, .classroom-sim *::before, .classroom-sim *::after { animation: none !important; transition-duration: .01ms !important; }
 }
+
+/* 명예의 전당 3안: 디자인 검토용 감사의 벽 */
+.review-banner { padding: 12px 16px; background: #d7ed9f; color: #234a3c; text-align: center; font-size: 12px; font-weight: 700; line-height: 1.7; }
+.honor-hall { position: relative; isolation: isolate; overflow: hidden; padding: 0 36px; color: #382f26; background: radial-gradient(ellipse at 18% 0%,#fff9e9d9,transparent 42%),radial-gradient(ellipse at 82% 0%,#fff9e9d9,transparent 42%),repeating-linear-gradient(0deg,transparent 0 159px,#9e8c721a 159px 160px),repeating-linear-gradient(90deg,transparent 0 239px,#9e8c7210 239px 240px),linear-gradient(100deg,#d4c9b9,#eee7da 22%,#e5dccd 78%,#cfc2b0); border: 0; border-radius: 0; box-shadow: inset 0 10px 18px -16px #403124, inset 0 -20px 30px -30px #403124; }
+.honor-hall::before,.honor-hall::after { content:''; position:absolute; top:0; bottom:0; width:14px; z-index:-1; background:linear-gradient(90deg,#ab9a8370,#f5eedc,#b9a88b70); box-shadow: 3px 0 8px #67543c16; }
+.honor-hall::before { left:0; } .honor-hall::after { right:0; }
+.honor-intro { padding: 48px 16px 30px; text-align:center; }
+.honor-eyebrow { color:#796447; font-size:10px; letter-spacing:.25em; font-weight:700; }
+.honor-intro h2 { margin:18px 0 16px; font-family:'Noto Serif KR',Batang,serif; font-size:clamp(24px,2.6vw,34px); font-weight:600; line-height:1.55; letter-spacing:-.02em; color:#3b3026; text-shadow:0 1px #fff8e9; }
+.honor-intro p { margin:0; color:#65584a; font-size:13px; line-height:1.9; }
+.honor-seal { display:inline-flex; gap:10px; align-items:center; margin-top:22px; padding:12px 20px 0; border-top:1px solid #a9987b; color:#6e583b; font-size:11px; }
+.honor-caption { display:flex; justify-content:space-between; align-items:center; gap:12px; margin:0 0 22px; padding:18px 0 12px; border-bottom:1px solid #9d896952; }
+.honor-caption > span { font-size:13px; font-weight:700; color:#57442e; }
+.honor-caption p { margin:0; color:#65584a; font-size:11px; }
+.honor-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px 22px; padding:0; }
+.honor-card { position:relative; display:flex; flex-direction:column; justify-content:center; min-width:0; min-height:108px; padding:20px 18px; border:1px solid #9e8967; border-radius:1px; background:linear-gradient(115deg,#c9b78e,#eee3c6 30%,#dfcea6 64%,#bdaa81); box-shadow:inset 0 0 0 3px #d8c69e,inset 0 0 0 4px #b49e71,0 3px 2px #56422b40,0 8px 12px #56422b19; text-align:center; }
+.honor-card::before,.honor-card::after { content:''; position:absolute; top:10px; width:4px; height:4px; border:1px solid #85704c; border-radius:50%; background:#b9a47a; }
+.honor-card::before { left:10px; } .honor-card::after { right:10px; }
+.honor-card h3 { margin:0; color:#453720; font-family:'Noto Serif KR',Batang,serif; font-size:19px; font-weight:700; letter-spacing:.09em; line-height:1.5; text-shadow:0 1px #fff0cf; }
+.honor-card h3::after { content:''; display:block; width:24px; height:1px; margin:9px auto; background:#96805a; }
+.honor-message { margin:0; color:#534630; font-size:11px; line-height:1.7; word-break:keep-all; }
+.honor-thanks { padding:36px 12px 40px; text-align:center; }
+.honor-thanks > span { color:#806745; font-size:20px; }
+.honor-thanks h3 { margin:8px 0; color:#57442e; font-family:Batang,serif; font-size:15px; }
+.honor-thanks p { margin:0; color:#65584a; font-size:12px; line-height:1.8; }
+@media(max-width:900px) { .honor-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:560px) { .honor-hall { padding:0 24px; } .honor-intro { padding:32px 0 22px; } .honor-intro p { font-size:12px; } .honor-caption { align-items:flex-start; flex-direction:column; gap:7px; padding:14px 0 10px; } .honor-grid { grid-template-columns:1fr; gap:16px; } .honor-card { min-height:88px; padding:16px 20px; } .honor-card h3 { font-size:18px; } }
+

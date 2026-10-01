@@ -138,10 +138,8 @@ const approvedPhoto = existsSync(approvedPhotoPath)
   : null;
 check(Boolean(approvedPhoto), "사용자가 제공한 v4 사진 파일");
 
-let v4ExportHtml = null;
 for (const version of ["v1", "v2", "v3", "v4"]) {
   const exportHtml = read(`docs/mockup/exports/${version}.html`);
-  if (version === "v4") v4ExportHtml = exportHtml;
   if (exportHtml) {
     if (version === "v4") {
       const embeddedPhotos = [
@@ -209,21 +207,26 @@ for (const version of ["v1", "v2", "v3", "v4"]) {
   }
 }
 
-const deployHtml = read("deploy/index.html");
-check(
-  Boolean(deployHtml) &&
-    Boolean(v4ExportHtml) &&
-    v4ExportHtml.includes('href="v4.html"') &&
-    deployHtml === v4ExportHtml.replace('href="v4.html"', 'href="index.html"'),
-  "정적 배포 index.html과 v4 export 내용 일치",
-);
+for (const file of [
+  "src/app/favicon.ico",
+  "src/app/icon.svg",
+  "src/views/project/ui/project-view.tsx",
+  "src/views/project/ui/donate-panel.tsx",
+  "public/assets/univ.jpg",
+  "public/assets/partners/zerosum.png",
+  "public/assets/partners/netzero.png",
+  "public/assets/partners/climate.png",
+  "public/assets/partners/goodnews.png",
+]) {
+  check(existsSync(path.join(root, file)), `프론트엔드 파일: ${file}`);
+}
 
 check(
   !existsSync(path.join(root, "docs", "homepage_image.jpg")),
   "무단 캠퍼스 사진 파일 제거",
 );
 
-console.log("Agent doctor: 정적 목업 및 문서 연결");
+console.log("Agent doctor: 프론트엔드 설정·자산 및 참고 문서 연결");
 for (const label of passed) console.log(`PASS ${label}`);
 for (const label of failures) console.error(`FAIL ${label}`);
 console.log(`${passed.length} passed, ${failures.length} failed`);

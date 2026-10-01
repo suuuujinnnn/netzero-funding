@@ -1,6 +1,6 @@
 # 프론트엔드 초기 설정 기준
 
-`veily-web`의 App Router 초기 설정에서 재사용할 구조를 정리했습니다. Next.js 앱과 `package.json`을 만들었고, 현재 페이지는 v4 구현 전의 초기 설정 안내 화면입니다.
+`veily-web`의 App Router 초기 설정에서 재사용할 구조를 정리했습니다. Next.js 앱과 `package.json`을 만들었고, 현재는 v4 디자인의 프로젝트 화면을 구현한 상태입니다.
 
 ## 개발 언어와 타입 검사
 

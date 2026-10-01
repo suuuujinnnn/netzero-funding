@@ -1,6 +1,6 @@
 # Codex 작업 도구와 대화 흐름
 
-`veily-web`의 Playwright·MCP·에이전트 운영 문서를 현재 저장소에 맞게 정리했습니다. 도구가 준비됐는지와 어떻게 사용할지는 구분합니다. 현재 저장소에는 Next.js 앱, `package.json`, Playwright 설치, Codex 프로젝트 MCP·훅 설정이 없습니다.
+`veily-web`의 Playwright·MCP·에이전트 운영 문서를 현재 저장소에 맞게 정리했습니다. 도구가 준비됐는지와 어떻게 사용할지는 구분합니다. 현재 저장소에는 Next.js 앱과 `package.json`이 있습니다. 브라우저 검증에는 설치된 Playwright CLI를 사용하며 프로젝트 MCP·훅은 등록하지 않았습니다.
 
 ## 작업을 요청할 때
 
@@ -8,7 +8,7 @@
 
 ## Playwright CLI
 
-`veily-web`은 프로젝트에 고정한 `@playwright/cli`와 `pnpm agent:browser` 명령으로 실제 브라우저를 검증했습니다. 해당 사용법을 [프로젝트 스킬](../.agents/skills/playwright-cli/SKILL.md)로 옮겼습니다. 프론트엔드 패키지를 만들 때 Playwright 버전과 명령을 고정한 뒤 사용할 수 있습니다. 현재는 명령이 아직 실행되지 않습니다.
+`veily-web`은 프로젝트에 고정한 `@playwright/cli`와 `pnpm agent:browser` 명령으로 실제 브라우저를 검증했습니다. 해당 사용법을 [프로젝트 스킬](../.agents/skills/playwright-cli/SKILL.md)로 옮겼습니다. 프론트엔드 패키지를 만들 때 Playwright 버전과 명령을 고정한 뒤 사용할 수 있습니다. 현재 package.json에는 전용 브라우저 명령이 없으므로 설치된 CLI의 실제 실행 경로와 도움말을 확인해 사용합니다.
 
 검증 내용은 [UI 검증 문서](ui-verification.md)에 둡니다. 클릭·키보드 조작, DOM 상태, 콘솔·네트워크를 확인하고 스크린샷은 필요할 때만 만듭니다.
 
