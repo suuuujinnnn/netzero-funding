@@ -37,6 +37,14 @@ export function ProjectView() {
               sizes="(max-width: 680px) 120px, 164px"
               unoptimized
             />
+            <Image
+              className="header-kookmin-logo"
+              src="/assets/logo/kookmin.svg"
+              alt="국민대학교 기후변화대응사업단"
+              width={518}
+              height={119}
+              unoptimized
+            />
           </Link>
           <span className="header-note">PROJECT ZEROSUM × NET ZERO</span>
         </div>
