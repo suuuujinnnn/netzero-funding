@@ -2375,10 +2375,23 @@
 .header-inner .site-title {
   display: flex;
   align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
   padding: 6px 0;
 }
+.header-goodnews-logo {
+  display: block;
+  width: 164px;
+  height: auto;
+}
 @media (max-width: 680px) {
+  .header-inner .site-title {
+    gap: 14px;
+  }
   .header-logo {
     width: 40px;
+  }
+  .header-goodnews-logo {
+    width: 120px;
   }
 }

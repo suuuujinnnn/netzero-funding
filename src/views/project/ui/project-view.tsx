@@ -28,6 +28,14 @@ export function ProjectView() {
               height={60}
               unoptimized
             />
+            <Image
+              className="header-goodnews-logo"
+              src="/assets/logo/good.jpg"
+              alt="굿뉴스 에너지"
+              width={2504}
+              height={916}
+              sizes="(max-width: 680px) 120px, 164px"
+            />
           </Link>
           <span className="header-note">PROJECT ZEROSUM × NET ZERO</span>
         </div>
