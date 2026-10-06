@@ -21,7 +21,7 @@
   justify-content: space-between;
   gap: 24px;
   width: min(var(--max), calc(100% - 48px));
-  min-height: 72px;
+  min-height: 64px;
   margin: auto;
 }
 .site-title {
@@ -309,7 +309,7 @@
     width: min(100% - 32px, var(--max));
   }
   .header-inner {
-    min-height: 65px;
+    min-height: 60px;
   }
   .header-note {
     display: none;
@@ -2369,7 +2369,7 @@
 
 .header-logo {
   display: block;
-  width: 48px;
+  width: 26px;
   height: auto;
 }
 .header-inner .site-title {
@@ -2377,29 +2377,29 @@
   align-items: center;
   gap: 20px;
   flex-shrink: 0;
-  padding: 6px 0;
+  padding: 12px 0;
 }
 .header-goodnews-logo {
   display: block;
-  width: 164px;
+  width: 88px;
   height: auto;
 }
 .header-kookmin-logo {
   display: block;
-  width: 174px;
+  width: 140px;
   height: auto;
 }
 @media (max-width: 680px) {
   .header-inner .site-title {
-    gap: 12px;
+    gap: 16px;
   }
   .header-logo {
-    width: 40px;
+    width: 23px;
   }
   .header-goodnews-logo {
-    width: 120px;
+    width: 76px;
   }
   .header-kookmin-logo {
-    width: 132px;
+    width: 122px;
   }
 }

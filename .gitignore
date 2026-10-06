@@ -4,6 +4,7 @@ node_modules/
 out/
 coverage/
 .playwright-cli/
+.artifacts/
 .vercel/
 .env
 .env.*
