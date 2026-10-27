@@ -73,7 +73,13 @@ const pieces = [
     path: "M 800.00 473.23 L 800.00 600.00 L 715.00 600.00 L 716.10 572.51 C 716.41 564.81 713.64 561.39 710.40 563.46 C 696.88 568.43 692.48 557.24 693.00 544.04 C 693.53 530.85 698.81 520.04 711.90 526.07 C 714.96 528.40 717.99 525.21 718.30 517.52 L 719.40 490.02 L 739.55 485.82 C 745.19 484.65 747.17 482.02 745.07 480.05 C 739.01 471.13 746.33 465.91 756.01 463.89 C 765.68 461.88 774.48 463.75 772.48 474.34 C 771.35 476.98 774.21 478.60 779.85 477.43 L 800.00 473.23 Z",
   },
 ];
-export function FundingPuzzle({ amount }: { amount: number | null }) {
+export function FundingPuzzle({
+  amount,
+  ariaLabel,
+}: {
+  amount: number | null;
+  ariaLabel?: string;
+}) {
   const filled = amount === null ? 0 : filledPieces(amount);
   return (
     <svg
@@ -81,9 +87,10 @@ export function FundingPuzzle({ amount }: { amount: number | null }) {
       viewBox="-25 -25 850 650"
       role="img"
       aria-label={
-        amount === null
+        ariaLabel ??
+        (amount === null
           ? "집계 확인 중인 24조각 교정 퍼즐"
-          : `24조각 교정 퍼즐, ${filled}조각 완성`
+          : `24조각 교정 퍼즐, ${filled}조각 완성`)
       }
     >
       <defs>
