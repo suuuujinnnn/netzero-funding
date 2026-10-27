@@ -21,19 +21,19 @@ export function ProjectView() {
             aria-label="국민대 넷제로 강의실 만들기 프로젝트 홈"
           >
             <Image
-              className="header-kookmin-logo"
-              src="/assets/logo/kookmin.svg"
-              alt="국민대학교 기후변화대응사업단"
-              width={518}
-              height={119}
-              unoptimized
-            />
-            <Image
               className="header-logo"
               src="/assets/logo/zerosum_white.svg"
               alt="제로섬"
               width={48}
               height={60}
+              unoptimized
+            />
+            <Image
+              className="header-kookmin-logo"
+              src="/assets/logo/kookmin.svg"
+              alt="국민대학교 기후변화대응사업단"
+              width={518}
+              height={119}
               unoptimized
             />
             <Image
