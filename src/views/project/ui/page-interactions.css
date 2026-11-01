@@ -1,100 +1,29 @@
 @media (prefers-reduced-motion: no-preference) {
   .project-page .garden-scene > img {
+    --classroom-lift: -14px;
     animation: classroom-float 6s ease-in-out infinite;
-  }
-  .project-page
-    :is(
-      .mk-button,
-      .next-panel,
-      #copy-account,
-      .effects-replay,
-      .effects-carousel-controls button
-    ) {
-    transition:
-      transform 180ms ease,
-      box-shadow 180ms ease,
-      background-color 180ms ease;
-  }
-  .project-page
-    :is(
-      .mk-button,
-      .next-panel,
-      #copy-account,
-      .effects-replay,
-      .effects-carousel-controls button
-    ):active {
-    transform: translateY(1px) scale(0.97);
-  }
-  .project-page :is(.mk-button, .next-panel) svg {
-    transition: transform 180ms ease;
-  }
-  .project-page :is(.mk-button, .next-panel):is(:hover, :focus-visible) svg {
-    transform: translate(2px, -2px);
   }
   .project-page :is(.b-site-menu > a, .nav-inner button, .effects-tabs button) {
     transition:
-      background-color 200ms ease,
-      color 200ms ease,
-      box-shadow 200ms ease;
-  }
-  .project-page
-    :is(.b-site-menu > a, .nav-inner button):is(:hover, :focus-visible) {
-    box-shadow: inset 0 -3px 0 var(--focus);
-  }
-  .project-page .garden-ring {
-    transition: transform 300ms ease;
-  }
-  .project-page .garden-goal:hover .garden-ring {
-    transform: rotate(-4deg) scale(1.025);
+      background-color 180ms ease,
+      color 180ms ease;
   }
 }
-
 @keyframes classroom-float {
   0%,
   100% {
     translate: 0 0;
   }
   50% {
-    translate: 0 -14px;
+    translate: 0 var(--classroom-lift);
   }
 }
-
-@media (max-width: 680px) {
-  @keyframes classroom-float {
-    0%,
-    100% {
-      translate: 0 0;
-    }
-    50% {
-      translate: 0 -8px;
-    }
+@media (max-width: 680px) and (prefers-reduced-motion: no-preference) {
+  .project-page .garden-scene > img {
+    --classroom-lift: -8px;
   }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .project-page
-    :is(
-      .partner-list > article,
-      .garden-card,
-      .plan-steps > li,
-      .explain-stages > li
-    ) {
-    transition:
-      translate 220ms ease,
-      box-shadow 220ms ease;
-  }
-  .project-page :is(.partner-list > article, .garden-card):hover {
-    translate: 0 -5px;
-    box-shadow: 0 12px 28px rgb(35 74 60 / 10%);
-  }
-  .project-page :is(.plan-steps > li, .explain-stages > li):hover {
-    translate: 0 -3px;
-  }
-  .project-page .partner-art {
-    transition: transform 250ms ease;
-  }
-  .project-page .partner-list > article:hover .partner-art {
-    transform: scale(1.04) rotate(-1deg);
-  }
   .project-page .effects-table-scroll tbody tr {
     transition: background-color 150ms ease;
   }

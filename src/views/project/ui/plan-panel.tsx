@@ -63,7 +63,7 @@ export function PlanPanel() {
           <div>
             <dt>목표금액</dt>
             <dd>
-              <strong>약 800,000원</strong>
+              <strong>약 1,000,000원</strong>
             </dd>
           </div>
         </dl>

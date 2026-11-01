@@ -47,7 +47,6 @@ const requiredDocs = [
   "docs/frontend-initial-setup.md",
   "docs/deployment-metadata.md",
   "docs/test-and-doctor.md",
-  "docs/mockup/README.md",
   ".agents/skills/playwright-cli/SKILL.md",
 ];
 
@@ -132,86 +131,13 @@ for (const doc of requiredDocs) {
   if (content) checkLocalLinks(content, doc);
 }
 
-const approvedPhotoPath = path.join(root, "assets", "univ.jpg");
-const approvedPhoto = existsSync(approvedPhotoPath)
-  ? readFileSync(approvedPhotoPath).toString("base64")
-  : null;
-check(Boolean(approvedPhoto), "사용자가 제공한 v4 사진 파일");
-
-for (const version of ["v1", "v2", "v3", "v4"]) {
-  const exportHtml = read(`docs/mockup/exports/${version}.html`);
-  if (exportHtml) {
-    if (version === "v4") {
-      const embeddedPhotos = [
-        ...exportHtml.matchAll(/data:image\/jpeg;base64,([A-Za-z0-9+/=]+)/g),
-      ];
-      check(
-        Boolean(approvedPhoto) &&
-          embeddedPhotos.length === 2 &&
-          embeddedPhotos.every((match) => match[1] === approvedPhoto) &&
-          !exportHtml.includes("homepage_image.jpg"),
-        "v4 export에 제공된 사진만 히어로와 퍼즐에 내장",
-      );
-    } else {
-      check(
-        !/data:image\/jpeg;base64,|homepage_image\.jpg/.test(exportHtml),
-        `${version} export에 무단 캠퍼스 사진 없음`,
-      );
-    }
-  }
-  if (version !== "v4") {
-    for (const extension of ["html", "css", "js"]) {
-      check(
-        !existsSync(
-          path.join(root, "docs", "mockup", `${version}.${extension}`),
-        ),
-        `${version} 원본 ${extension} 정리`,
-      );
-    }
-    continue;
-  }
-
-  const htmlPath = "docs/mockup/v4.html";
-  const html = read(htmlPath);
-  read("docs/mockup/v4.css");
-  read("docs/mockup/v4.js");
-  if (!html) continue;
-  check(
-    html.includes('src="../../assets/univ.jpg"') &&
-      html.includes('href="../../assets/univ.jpg"') &&
-      !html.includes("homepage_image.jpg"),
-    "v4 원본의 히어로와 퍼즐에 제공된 사진 연결",
-  );
-  const ids = new Set(
-    [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]),
-  );
-  for (const match of html.matchAll(
-    /\b(?:src|href|aria-controls|aria-labelledby)="([^"]+)"/g,
-  )) {
-    const target = match[1];
-    if (target.startsWith("#")) {
-      check(ids.has(target.slice(1)), `${htmlPath}: ${target} 대상`);
-    } else if (
-      match[0].startsWith("aria-controls=") ||
-      match[0].startsWith("aria-labelledby=")
-    ) {
-      check(ids.has(target), `${htmlPath}: ${target} ARIA 대상`);
-    } else if (!/^[a-z][a-z\d+.-]*:/i.test(target)) {
-      const resolved = path.resolve(
-        root,
-        path.dirname(htmlPath),
-        target.split("#")[0],
-      );
-      check(existsSync(resolved), `${htmlPath}: ${target} 자산`);
-    }
-  }
-}
-
 for (const file of [
   "src/app/favicon.ico",
   "src/app/icon.svg",
   "src/views/project/ui/project-view.tsx",
   "src/views/project/ui/donate-panel.tsx",
+  "src/views/project/ui/effects/effects-content.tsx",
+  "public/assets/illustrations/green-classroom.png",
   "public/assets/univ.jpg",
   "public/assets/partners/zerosum.png",
   "public/assets/partners/netzero.png",

@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { StaggeredContent } from "./staggered-content";
 
 const pages = [
   ["home", "홈"],
   ["overview", "모금 소개"],
+  ["effects", "기대효과"],
   ["plan", "사용계획"],
   ["partners", "관련단체"],
   ["history", "명예의 전당"],
@@ -141,9 +143,11 @@ export function ProjectNavigation({
         }
       >
         {active === "home" ? (
-          home
+          <StaggeredContent key="home">{home}</StaggeredContent>
         ) : (
-          <section id={active}>{panels[active]}</section>
+          <section id={active}>
+            <StaggeredContent key={active}>{panels[active]}</StaggeredContent>
+          </section>
         )}
         <noscript>
           <p>메뉴 전환과 모금 집계를 확인하려면 JavaScript를 켜 주세요.</p>

@@ -1,4 +1,4 @@
-export const FUNDING_TARGET = 800_000;
+export const FUNDING_TARGET = 1_000_000;
 export const REFRESH_INTERVAL = 5 * 60 * 1000;
 export type FundingData = { amount: number; count: number; names: string[] };
 export const INITIAL_FUNDING: FundingData = { amount: 0, count: 0, names: [] };

@@ -61,4 +61,12 @@ export const allEffectsData: EffectsData[] = [
     water: "5,058,182",
     waste: "9,818.8",
   },
+  {
+    amount: "1,000,000",
+    electricity: "10,000",
+    carbon: "4,173",
+    trees: "207.9",
+    water: "6,322,727",
+    waste: "12,273.5",
+  },
 ];

@@ -6,6 +6,7 @@ import { PlanPanel } from "./plan-panel";
 import { PartnersPanel } from "./partners-panel";
 import { DonatePanel } from "./donate-panel";
 import { ProjectHome } from "./project-home";
+import { EffectsContent } from "./effects/effects-content";
 import "./project.css";
 import "./production.css";
 
@@ -53,7 +54,7 @@ export function ProjectView() {
         homeContent={<ProjectHome />}
         heroImage={
           <Image
-            src="/assets/mockups/green-classroom.png"
+            src="/assets/illustrations/green-classroom.png"
             alt="나무와 책상, REC 인증서를 곁들인 작은 교실의 입체 콘셉트 일러스트"
             fill
             sizes="(max-width: 760px) 100vw, 70vw"
@@ -62,6 +63,16 @@ export function ProjectView() {
         }
         panels={{
           overview: <OverviewPanel />,
+          effects: (
+            <>
+              <div className="panel-heading">
+                <span className="eyebrow">EXPECTED IMPACT</span>
+                <h1>기대효과</h1>
+                <p>참여 금액에 따른 REC 전력량과 환경 영향 규모 비교</p>
+              </div>
+              <EffectsContent />
+            </>
+          ),
           plan: <PlanPanel />,
           partners: <PartnersPanel />,
           donate: <DonatePanel />,

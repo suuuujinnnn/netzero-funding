@@ -9,12 +9,5 @@ coverage
 .vercel
 pnpm-lock.yaml
 assets
-docs/mockup/exports
-deployment/index.html
 docs/*.jpg
 docs/*.pdf
-
-# 보존하는 정적 디자인 참고 자료
-docs/mockup/*.html
-docs/mockup/*.js
-docs/mockup/*.css

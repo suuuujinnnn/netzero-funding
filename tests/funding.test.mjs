@@ -62,12 +62,13 @@ test("rejects private columns, invalid numbers, formula errors and malformed agg
 test("puzzle boundaries", () => {
   for (const [a, n] of [
     [0, 0],
-    [33333, 0],
-    [33334, 1],
-    [400000, 12],
-    [799999, 23],
-    [800000, 24],
-    [900000, 24],
+    [41666, 0],
+    [41667, 1],
+    [500000, 12],
+    [800000, 19],
+    [999999, 23],
+    [1000000, 24],
+    [1100000, 24],
   ])
     assert.equal(filledPieces(a), n);
 });

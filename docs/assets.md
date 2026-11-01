@@ -1,7 +1,12 @@
 # 이미지와 정적 자산
 
-운영 화면은 `public/assets/`의 캠퍼스 사진과 단체 이미지를 사용합니다. 원본은 `assets/`에, v4 디자인 참고 자료는 `docs/mockup/`에 보존합니다. 이미지를 바꿀 때 사용 허가와 실제 장면에 맞는 대체 글을 확인합니다.
+운영 화면은 `public/assets/`의 자산을 사용합니다. `assets/`에는 제공받은 원본을 보존합니다. 의미 있는 이미지는 정확한 대체 글을 사용하고 장식 이미지는 보조 기술에서 제외합니다.
 
-새 공유 이미지는 아직 연결하지 않았습니다. 확정되면 [메타데이터](deployment-metadata.md)에 경로를 반영합니다. `docs/reference_v1.pdf`와 `deployment/`는 운영 화면 자산이 아닙니다.
+- `public/assets/illustrations/green-classroom.png`: 운영 홈의 교실 콘셉트 일러스트. 실제 강의실 사진이 아니며 [생성 기록](illustration-notes.md)을 보존합니다.
+- `public/assets/logo/`: 운영 상단 로고
+- `public/assets/partners/`: 관련단체 이미지
+- `public/assets/univ.jpg`: 명예의 전당 퍼즐에 사용하는 캠퍼스 사진
 
-운영 히어로는 B 목업에서 사용한 `public/assets/mockups/green-classroom.png`를 재사용합니다. 실제 교실 사진이 아닌 입체 콘셉트 일러스트이며 생성 경위와 프롬프트는 [목업 디자인 기록](mockup-design-notes.md)에 있습니다. 원래 교정 사진은 명예의 전당 퍼즐에서 계속 사용합니다.
+기대효과 수치는 `docs/REC_모금액별_기대효과_환산_정리.docx`를 기준으로 합니다. `docs/reference_v1.pdf`는 제공받은 참고 자료입니다. 과거 목업 앱과 정적 HTML 사본은 제거했습니다.
+
+공유 이미지는 아직 연결하지 않았으며 확정되면 [메타데이터](deployment-metadata.md)에 반영합니다.

@@ -11,9 +11,6 @@
 .effects-content .effects-body {
   padding-left: 0;
 }
-.report-document .effects-content.panel-body {
-  padding-left: 0;
-}
 .effects-content .effects-comparisons {
   display: grid;
   padding: 0;
@@ -135,7 +132,7 @@
 .effects-sources li + li {
   margin-top: 10px;
 }
-.effects-sources a {
+.effects-content .effects-sources a {
   text-decoration: underline;
   text-underline-offset: 4px;
   color: var(--green);

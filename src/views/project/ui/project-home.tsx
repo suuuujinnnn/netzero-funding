@@ -39,7 +39,7 @@ export function ProjectHome() {
                 <div>
                   <dt>목표 모금액</dt>
                   <dd>
-                    약 <strong>800,000</strong> 원
+                    약 <strong>1,000,000</strong> 원
                   </dd>
                 </div>
               </dl>

@@ -13,6 +13,7 @@ export default defineConfig([
     "out/**",
     "coverage/**",
     ".playwright-cli/**",
+    ".artifacts/**",
     "next-env.d.ts",
     ".agents/**",
   ]),

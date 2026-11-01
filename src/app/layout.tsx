@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
-import { PageInteractions } from "@/views/project/ui/page-interactions";
+import "@/views/project/ui/page-interactions.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://netzero-funding.vercel.app"),
@@ -30,10 +30,7 @@ export default function RootLayout({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="ko">
-      <body>
-        {children}
-        <PageInteractions />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

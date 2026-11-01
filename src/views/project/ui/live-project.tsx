@@ -17,6 +17,7 @@ export function LiveProject({
   homeContent: ReactNode;
   panels: {
     overview: ReactNode;
+    effects: ReactNode;
     plan: ReactNode;
     partners: ReactNode;
     donate: ReactNode;
