@@ -9,6 +9,7 @@ import { ProjectHome } from "./project-home";
 import { EffectsContent } from "./effects/effects-content";
 import "./project.css";
 import "./production.css";
+import "./mobile.css";
 
 export function ProjectView() {
   return (

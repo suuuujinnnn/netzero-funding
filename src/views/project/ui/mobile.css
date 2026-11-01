@@ -1,0 +1,285 @@
+/* Mobile refinements for the operating page. */
+@media (max-width: 760px) {
+  .production-site .main-content {
+    width: calc(100% - 32px);
+  }
+
+  .production-site .b-detail,
+  .production-site .b-detail > section {
+    scroll-margin-top: 210px;
+  }
+
+  .production-site .b-topbar-inner {
+    gap: 0;
+    padding-top: 4px;
+  }
+
+  .production-site .b-topbar .b-site-menu {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+    overflow: visible;
+    padding-block: 4px 10px;
+  }
+
+  .production-site .b-topbar .b-site-menu > a {
+    min-width: 0;
+    min-height: 44px;
+    padding: 8px 4px;
+    font-size: 12px;
+  }
+
+  .production-site .b-topbar .b-site-menu > a:last-child {
+    grid-column: span 2;
+    margin: 0;
+  }
+
+  .production-site .garden-heading {
+    padding-top: 28px;
+  }
+
+  .production-site .garden-heading h1 {
+    font-size: clamp(32px, 9vw, 42px);
+    margin-block: 18px;
+  }
+
+  .production-site .garden-heading > p:last-child {
+    max-width: 28ch;
+    margin-inline: auto;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .production-site .garden-scene {
+    height: auto;
+    aspect-ratio: 1.15;
+    margin-block: -12px 0;
+  }
+
+  .production-site .garden-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .production-site .garden-goal {
+    grid-template-columns: minmax(0, 1fr) 110px;
+    gap: 12px;
+  }
+
+  .production-site .garden-goal h2 {
+    font-size: 20px;
+  }
+
+  .production-site .garden-ring {
+    width: 110px;
+    height: 110px;
+    align-self: center;
+  }
+
+  .production-site .garden-goal > p:not(.garden-card-label) {
+    font-size: 12px;
+  }
+
+  .production-site .garden-card-tag {
+    font-size: 10px;
+    grid-column: 1 / -1;
+  }
+
+  .production-site .garden-join h2 > strong {
+    display: block;
+    margin: 10px 0 0;
+    font-size: 32px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .production-site .garden-join > p:not(.garden-card-label),
+  .production-site .garden-join .funding-status {
+    font-size: 12px;
+  }
+
+  .production-site .garden-join .mk-button {
+    min-height: 52px;
+    font-size: 14px;
+  }
+
+  .production-site .garden-caption {
+    flex-wrap: wrap;
+    align-items: center;
+    padding-block: 12px 24px;
+  }
+
+  .production-site .garden-caption > span {
+    flex-basis: 100%;
+    font-size: 9px;
+  }
+
+  .production-site .garden-caption > svg {
+    margin-left: auto;
+  }
+
+  .production-site .explain-heading h2 {
+    font-size: clamp(24px, 6.5vw, 28px);
+    text-wrap: pretty;
+  }
+
+  .production-site .explain-stages > li {
+    gap: 14px;
+  }
+
+  .production-site .explain-stages > li > div > p:not(.explain-label) {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .production-site .explain-stages a {
+    min-height: 44px;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  .production-site .explain-target dl {
+    display: grid;
+    gap: 18px;
+  }
+
+  .production-site .explain-target dd {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .production-site .explain-end .mk-button {
+    width: 100%;
+  }
+
+  .production-site .panel-heading h1 {
+    font-size: clamp(26px, 7vw, 32px);
+    text-wrap: pretty;
+  }
+
+  .production-site .plan-summary dl div {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 12px;
+    line-height: 1.8;
+  }
+
+  .production-site .donate-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .production-site .donate-steps > li {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .production-site .bank-box {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .production-site .bank-box strong {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+  }
+
+  .production-site .bank-box button {
+    min-height: 48px;
+    font-size: 13px;
+  }
+
+  .production-site .donate-aside {
+    margin-top: 8px;
+    padding: 0 0 0 16px;
+  }
+
+  .production-site .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px 16px max(28px, env(safe-area-inset-bottom));
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 600px) {
+  .production-site .effects-stage {
+    display: grid;
+    height: auto;
+    padding-bottom: 24px;
+  }
+
+  .production-site .effects-slide {
+    position: relative;
+    grid-area: 1 / 1;
+    align-self: start;
+    width: 72%;
+  }
+
+  .production-site .effects-carousel-controls button {
+    top: calc(50% - 22px);
+  }
+
+  .production-site .effects-tabs button,
+  .production-site .effects-replay {
+    min-height: 44px;
+  }
+
+  .production-site .effects-metrics dt {
+    font-size: 12px;
+  }
+
+  .production-site .effects-table-scroll {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+
+  .production-site .effects-table-scroll caption {
+    white-space: normal;
+    max-width: calc(100vw - 64px);
+    padding: 14px 12px;
+  }
+
+  .production-site .effects-table-scroll tr > :first-child {
+    position: sticky;
+    left: 0;
+    background: var(--paper);
+    box-shadow: 1px 0 var(--line);
+  }
+
+  .production-site .partner-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .production-site .partner-list article {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
+  }
+
+  .production-site .partner-art {
+    width: 80px;
+    height: 96px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 359px) {
+  .production-site .header-inner .site-title {
+    gap: 10px;
+  }
+
+  .production-site .header-kookmin-logo {
+    width: 110px;
+  }
+
+  .production-site .header-goodnews-logo {
+    width: 68px;
+  }
+
+  .production-site .garden-card {
+    padding: 16px;
+  }
+}
