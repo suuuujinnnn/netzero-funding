@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EffectsContent } from "./effects-content";
 
 const chapters = [
   ["overview", "프로젝트 개요"],
@@ -52,9 +53,12 @@ export function ProjectReport({
       </aside>
       <article className="report-document">
         {effects ? (
-          <header className="report-cover" id="effects">
-            <h1>기대효과</h1>
-          </header>
+          <>
+            <header className="report-cover" id="effects">
+              <h1>기대효과</h1>
+            </header>
+            <EffectsContent />
+          </>
         ) : (
           <>
             <header className="report-cover">

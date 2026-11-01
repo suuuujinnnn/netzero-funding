@@ -9,6 +9,7 @@ import { OverviewPanel } from "@/views/project/ui/overview-panel";
 import { PlanPanel } from "@/views/project/ui/plan-panel";
 import { PartnersPanel } from "@/views/project/ui/partners-panel";
 import { DonatePanel } from "@/views/project/ui/donate-panel";
+import { EffectsContent } from "./effects-content";
 
 type Variant = "a-1" | "a-2" | "b" | "a-info";
 export function MockupView({
@@ -65,9 +66,14 @@ export function MockupView({
             ),
             plan: <PlanPanel />,
             effects: (
-              <div className="panel-heading">
-                <h1>기대효과</h1>
-              </div>
+              <>
+                <div className="panel-heading">
+                  <span className="eyebrow">EXPECTED IMPACT</span>
+                  <h1>기대효과</h1>
+                  <p>참여 금액에 따른 REC 전력량과 환경 영향 규모 비교</p>
+                </div>
+                <EffectsContent />
+              </>
             ),
             partners: <PartnersPanel />,
             donate: (
