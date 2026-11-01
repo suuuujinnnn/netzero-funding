@@ -13,7 +13,7 @@
 .effects-toolbar {
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .effects-tabs {
   padding: 5px;
@@ -133,11 +133,11 @@
 }
 .effects-carousel {
   position: relative;
-  padding: 12px 0 0;
+  padding: 0;
 }
 .effects-stage {
   position: relative;
-  height: 650px;
+  height: 630px;
   margin-inline: 54px;
 }
 .effects-slide {
@@ -171,7 +171,7 @@
 }
 .effects-carousel-controls button {
   position: absolute;
-  top: 315px;
+  top: 295px;
   z-index: 3;
   display: grid;
   place-items: center;

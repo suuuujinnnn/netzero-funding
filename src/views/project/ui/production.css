@@ -421,12 +421,28 @@
     inset 0 1px 0 #fff,
     0 12px 45px #3049230b;
 }
+.production-site .explain-flow {
+  padding-block: 64px 32px;
+}
+.production-site .explain-end {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 32px 56px;
+  border-top: 1px solid var(--line);
+}
+.production-site .explain-end > p {
+  font-size: 18px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
 .production-site .explain-heading {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: end;
   gap: 15px 40px;
-  margin-bottom: 45px;
+  margin-bottom: 24px;
 }
 .production-site .explain-heading .dev-kicker {
   grid-column: 1/-1;
@@ -579,6 +595,7 @@
 }
 .production-site .explain-stages .explain-note {
   font-size: 12px;
+  margin-top: 12px;
 }
 .production-site .explain-result .explain-number {
   background: var(--green);
@@ -591,6 +608,15 @@
   }
 }
 @media (max-width: 760px) {
+  .production-site .explain-flow {
+    padding-block: 40px 24px;
+  }
+  .production-site .explain-end {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    padding-block: 24px 40px;
+  }
   .production-site .explain-heading {
     grid-template-columns: 1fr;
     gap: 15px;
@@ -681,6 +707,7 @@
 }
 .production-site .b-site-shell .b-detail {
   padding-top: 45px;
+  padding-bottom: 64px;
   min-height: 65vh;
 }
 @media (max-width: 760px) {
@@ -694,6 +721,7 @@
   }
   .production-site .b-site-shell .b-detail {
     padding-top: 30px;
+    padding-bottom: 40px;
   }
 }
 .production-site .b-topbar {
