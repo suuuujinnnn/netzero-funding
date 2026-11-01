@@ -6,7 +6,7 @@ export default async function Page({
   searchParams,
 }: {
   params: Promise<{ variant: string }>;
-  searchParams: Promise<{ details?: string; from?: string }>;
+  searchParams: Promise<{ details?: string; from?: string; section?: string }>;
 }) {
   const { variant } = await params;
   if (
@@ -21,6 +21,7 @@ export default async function Page({
     <MockupView
       variant={variant}
       details={query.details === "1"}
+      section={query.section}
       from={query.from === "a-2" ? "a-2" : "a-1"}
     />
   );

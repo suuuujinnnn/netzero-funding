@@ -1,4 +1,4 @@
-export function OverviewPanel() {
+export function OverviewPanel({ planHref }: { planHref?: string } = {}) {
   return (
     <>
       <div className="panel-heading">
@@ -77,9 +77,15 @@ export function OverviewPanel() {
       </div>
       <div className="panel-bottom">
         <span>다음으로 살펴보기</span>
-        <button type="button" className="next-panel" data-project-tab="plan">
-          사용계획 보기 <span aria-hidden="true">→</span>
-        </button>
+        {planHref ? (
+          <a className="next-panel" href={planHref}>
+            사용계획 보기 <span aria-hidden="true">→</span>
+          </a>
+        ) : (
+          <button type="button" className="next-panel" data-project-tab="plan">
+            사용계획 보기 <span aria-hidden="true">→</span>
+          </button>
+        )}
       </div>
     </>
   );

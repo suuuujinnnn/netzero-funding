@@ -4,33 +4,28 @@ import { MockupHome } from "./mockup-home";
 import { MockupLogos } from "./mockup-logos";
 import { MockupHall } from "./mockup-hall";
 import { ProjectReport } from "./project-report";
-import { ProjectTabs } from "@/features/project-tabs";
+import { MockupNavigation } from "./mockup-navigation";
 import { OverviewPanel } from "@/views/project/ui/overview-panel";
 import { PlanPanel } from "@/views/project/ui/plan-panel";
 import { PartnersPanel } from "@/views/project/ui/partners-panel";
 import { DonatePanel } from "@/views/project/ui/donate-panel";
 
 type Variant = "a-1" | "a-2" | "b" | "a-info";
-const menus = [
-  ["overview", "모금 소개"],
-  ["plan", "사용계획"],
-  ["partners", "관련단체"],
-  ["history", "명예의 전당"],
-  ["donate", "기부하기"],
-];
-
 export function MockupView({
   variant,
   details,
   from,
+  section,
 }: {
   variant: Variant;
   details: boolean;
   from: "a-1" | "a-2";
+  section?: string;
 }) {
   const info = variant === "a-info";
   const base = `/mockups/${variant}`;
-  const detailHref = (tab: string) => `${base}?details=1#${tab}`;
+  const detailHref = (tab: string) =>
+    `${base}?details=1${variant === "b" ? `&section=${tab}` : ""}#${tab}`;
   const introHref =
     variant === "b"
       ? detailHref("overview")
@@ -48,56 +43,109 @@ export function MockupView({
         </span>
         <Link href="/mockups">다른 안 보기 ↗</Link>
       </div>
-      <header className="study-header mk-wrap">
-        <MockupLogos />
-        {info ? (
-          <Link className="study-report-back" href={`/mockups/${from}`}>
-            ← 모금 사이트로 돌아가기
-          </Link>
-        ) : (
-          <div className="study-header-actions">
-            {variant !== "b" && (
-              <Link href={introHref}>
-                프로젝트 알아보기 <ArrowUpRight size={15} />
-              </Link>
-            )}
-            <Link className="mk-button mk-header-cta" href={donateHref}>
-              참여하기 <ArrowUpRight size={17} />
+      {variant === "b" ? (
+        <MockupNavigation
+          details={details}
+          initialPage={section}
+          header={
+            <Link href="/mockups/b" aria-label="프로젝트 홈">
+              <MockupLogos />
             </Link>
-          </div>
-        )}
-      </header>
-      {variant === "b" && (
-        <nav className="study-site-nav mk-wrap" aria-label="사이트 메뉴">
-          <Link href={base}>홈</Link>
-          {!details &&
-            menus.map(([id, label]) => (
-              <Link href={detailHref(id)} key={id}>
-                {label}
-              </Link>
-            ))}
-        </nav>
-      )}
-      {info ? (
-        <ProjectReport from={from} />
-      ) : details ? (
-        <div id="mockup-main" className="mk-details">
-          <ProjectTabs
-            panels={{
-              overview: <OverviewPanel />,
-              plan: <PlanPanel />,
-              partners: <PartnersPanel />,
-              donate: <DonatePanel />,
-              history: <MockupHall page />,
-            }}
-          />
-        </div>
-      ) : (
-        <MockupHome
-          variant={variant}
-          introHref={introHref}
-          donateHref={donateHref}
+          }
+          home={
+            <MockupHome
+              variant="b"
+              introHref={introHref}
+              donateHref={donateHref}
+            />
+          }
+          panels={{
+            overview: (
+              <OverviewPanel planHref="/mockups/b?details=1&section=plan#plan" />
+            ),
+            plan: <PlanPanel />,
+            effects: (
+              <div className="panel-heading">
+                <h1>기대효과</h1>
+              </div>
+            ),
+            partners: <PartnersPanel />,
+            donate: (
+              <DonatePanel planHref="/mockups/b?details=1&section=plan#plan" />
+            ),
+            history: <MockupHall page />,
+          }}
         />
+      ) : (
+        <>
+          <header className="study-header mk-wrap">
+            <MockupLogos />
+            {info ? (
+              <Link className="study-report-back" href={`/mockups/${from}`}>
+                ← 모금 사이트로 돌아가기
+              </Link>
+            ) : (
+              <div className="study-header-actions">
+                <Link href={introHref}>
+                  프로젝트 알아보기 <ArrowUpRight size={15} />
+                </Link>
+                <Link
+                  className="mk-button mk-header-cta"
+                  href={details ? base : donateHref}
+                >
+                  {details ? "모금페이지로" : "참여하기"}{" "}
+                  <ArrowUpRight size={17} />
+                </Link>
+              </div>
+            )}
+          </header>
+          {info ? (
+            <ProjectReport from={from} effects={section === "effects"} />
+          ) : details ? (
+            <main
+              id="mockup-main"
+              tabIndex={-1}
+              className={`themed-donation themed-donation-${variant} mk-wrap`}
+            >
+              <nav className="donation-trail" aria-label="페이지 위치">
+                <Link href={base}>
+                  ←{" "}
+                  {variant === "a-1"
+                    ? "초록빛 교실로 돌아가기"
+                    : "캠페인으로 돌아가기"}
+                </Link>
+                <span>
+                  {variant === "a-1"
+                    ? "YOUR NEXT GREEN STEP"
+                    : "LET’S MAKE OUR CHOICE!"}
+                </span>
+              </nav>
+              <div className="donation-intro">
+                <span aria-hidden="true">{variant === "a-1" ? "✳" : "↗"}</span>
+                <p>
+                  {variant === "a-1"
+                    ? "작은 선택을 더하는 방법, 차근차근 안내할게요."
+                    : "준비됐나요? 세 단계면 함께할 수 있어요!"}
+                </p>
+              </div>
+              <DonatePanel planHref={`${introHref}#plan`} />
+              <div className="donation-closing">
+                <p>
+                  {variant === "a-1"
+                    ? "우리 교실의 다음 장면을 함께 만들어가요."
+                    : "작은 참여, 우리 교실의 새로운 가능성."}
+                </p>
+                <Link href={base}>모금 이야기로 돌아가기 →</Link>
+              </div>
+            </main>
+          ) : (
+            <MockupHome
+              variant={variant}
+              introHref={introHref}
+              donateHref={donateHref}
+            />
+          )}
+        </>
       )}
       <footer className="mk-footer mk-wrap">
         <div>

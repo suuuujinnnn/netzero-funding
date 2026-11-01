@@ -18,10 +18,10 @@ export function MockupLogos() {
         unoptimized
       />
       <Image
-        src="/assets/logo/good.svg"
+        src="/assets/logo/goodnews.svg"
         alt="굿뉴스에너지"
-        width={2504}
-        height={916}
+        width={826}
+        height={302}
         unoptimized
       />
     </div>

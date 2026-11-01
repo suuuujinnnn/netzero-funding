@@ -13,7 +13,6 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-import { FundingPuzzle } from "@/views/project/ui/funding-puzzle";
 import { MockupHall } from "./mockup-hall";
 
 type HomeProps = {
@@ -91,97 +90,103 @@ function Flow({ playful = false }: { playful?: boolean }) {
   );
 }
 
+function ClassroomHero({ donateHref }: { donateHref: string }) {
+  return (
+    <section className="garden-board garden-hero mk-wrap">
+      <div className="garden-heading">
+        <p className="dev-kicker">
+          <span /> OUR FIRST GREEN CLASSROOM
+        </p>
+        <h1>
+          우리 교실의 에너지,
+          <br />
+          <em>다음 장면을 함께.</em>
+        </h1>
+        <p>작은 마음을 모아, 재생에너지의 가치를 선택해요.</p>
+      </div>
+      <div className="garden-scene">
+        <Image
+          src="/assets/mockups/green-classroom.png"
+          alt="나무와 책상, REC 인증서를 곁들인 작은 교실의 입체 콘셉트 일러스트"
+          fill
+          sizes="(max-width: 760px) 100vw, 70vw"
+          priority
+        />
+        <span className="garden-scene-label">
+          <span /> 북악관 801호 · 우리가 바꿔갈 첫 교실
+        </span>
+      </div>
+      <article className="garden-card garden-goal">
+        <p className="garden-card-label">
+          <Sun size={17} /> OUR MISSION <span>01</span>
+        </p>
+        <h2>
+          한 교실만큼의
+          <br />
+          새로운 선택
+        </h2>
+        <div className="garden-ring">
+          <div>
+            <strong>8,000</strong>
+            <span>kWh · 목표 전력량</span>
+          </div>
+        </div>
+        <p>
+          우리가 쓰는 전력량만큼
+          <br />
+          재생에너지의 가치를 모아요.
+        </p>
+        <span className="garden-card-tag">
+          <Leaf size={12} /> 재생에너지 인증서 REC
+        </span>
+      </article>
+      <article className="garden-card garden-join">
+        <p className="garden-card-label">
+          <Sparkles size={17} /> MAKE IT HAPPEN
+        </p>
+        <h2>
+          우리의 목표는
+          <br />
+          <strong>
+            800,000<span>원</span>
+          </strong>
+        </h2>
+        <div className="garden-target-track" aria-hidden="true">
+          {Array.from({ length: 26 }, (_, i) => (
+            <i key={i} />
+          ))}
+        </div>
+        <p>2026.10.08 — 12.25 모금기간</p>
+        <Link className="mk-button" href={donateHref}>
+          초록빛 선택에 함께하기 <ArrowUpRight size={18} />
+        </Link>
+        <small>목표를 나타낸 화면이며, 실시간 집계는 미연결입니다.</small>
+      </article>
+      <div className="garden-floating-tag">
+        <Leaf size={19} />
+        <div>
+          <strong>환경적 가치</strong>
+          <span>환경가치를 선택하는 방법</span>
+        </div>
+      </div>
+      <div className="garden-caption">
+        <span>THE CLASSROOM EDIT / 801</span>
+        <p>
+          학생의 선택이 모여
+          <br />
+          새로운 가능성이 자랍니다.
+        </p>
+        <ArrowDown size={22} />
+      </div>
+    </section>
+  );
+}
+
 export function MockupHome({ variant, introHref, donateHref }: HomeProps) {
   if (variant === "a-1")
     return (
       <main id="mockup-main" className="garden-home">
-        <section className="garden-board mk-wrap">
-          <div className="garden-heading">
-            <p className="dev-kicker">
-              <span /> OUR FIRST GREEN CLASSROOM
-            </p>
-            <h1>
-              우리 교실의 에너지,
-              <br />
-              <em>다음 장면을 함께.</em>
-            </h1>
-            <p>작은 마음을 모아, 재생에너지의 가치를 선택해요.</p>
-          </div>
-          <div className="garden-scene">
-            <Image
-              src="/assets/mockups/green-classroom.png"
-              alt="나무와 책상, REC 인증서를 곁들인 작은 교실의 입체 콘셉트 일러스트"
-              fill
-              sizes="(max-width: 760px) 100vw, 70vw"
-              priority
-            />
-            <span className="garden-scene-label">
-              <span /> 북악관 801호 · 우리가 바꿔갈 첫 교실
-            </span>
-          </div>
-          <article className="garden-card garden-goal">
-            <p className="garden-card-label">
-              <Sun size={17} /> OUR MISSION <span>01</span>
-            </p>
-            <h2>
-              한 교실만큼의
-              <br />
-              새로운 선택
-            </h2>
-            <div className="garden-ring">
-              <div>
-                <strong>8,000</strong>
-                <span>kWh · 목표 전력량</span>
-              </div>
-            </div>
-            <p>
-              우리가 쓰는 전력량만큼
-              <br />
-              재생에너지의 가치를 모아요.
-            </p>
-            <span className="garden-card-tag">
-              <Leaf size={12} /> 재생에너지 인증서 REC
-            </span>
-          </article>
-          <article className="garden-card garden-join">
-            <p className="garden-card-label">
-              <Sparkles size={17} /> MAKE IT HAPPEN
-            </p>
-            <h2>
-              우리의 목표는
-              <br />
-              <strong>
-                800,000<span>원</span>
-              </strong>
-            </h2>
-            <div className="garden-target-track" aria-hidden="true">
-              {Array.from({ length: 26 }, (_, i) => (
-                <i key={i} />
-              ))}
-            </div>
-            <p>2026.10.08 — 12.25 모금기간</p>
-            <Link className="mk-button" href={donateHref}>
-              초록빛 선택에 함께하기 <ArrowUpRight size={18} />
-            </Link>
-            <small>목표를 나타낸 화면이며, 실시간 집계는 미연결입니다.</small>
-          </article>
-          <div className="garden-floating-tag">
-            <Leaf size={19} />
-            <div>
-              <strong>환경적 가치</strong>
-              <span>환경가치를 선택하는 방법</span>
-            </div>
-          </div>
-          <div className="garden-caption">
-            <span>THE CLASSROOM EDIT / 801</span>
-            <p>
-              학생의 선택이 모여
-              <br />
-              새로운 가능성이 자랍니다.
-            </p>
-            <ArrowDown size={22} />
-          </div>
-        </section>
+        <ClassroomHero donateHref={donateHref} />
         <section className="garden-benefits mk-wrap">
           <div>
             <p className="dev-kicker">SMALL CHOICE, NEW POSSIBILITY</p>
@@ -364,54 +369,10 @@ export function MockupHome({ variant, introHref, donateHref }: HomeProps) {
     );
 
   return (
-    <main id="mockup-main" className="formal-home">
-      <section className="formal-hero mk-wrap">
-        <div className="formal-intro">
-          <p className="dev-kicker">PROJECT ZEROSUM × NET ZERO</p>
-          <h1>
-            국민대 넷제로
-            <br />
-            <em>강의실 만들기</em>
-          </h1>
-          <p>
-            학생의 선택으로 시작하는 캠퍼스 에너지 전환.
-            <br />
-            북악관 801호가 사용한 전력량만큼,
-            <br />
-            재생에너지의 환경적 가치를 확보하고자 합니다.
-          </p>
-          <div className="mk-actions">
-            <Link className="mk-button" href={donateHref}>
-              모금에 참여하기 <ArrowUpRight size={18} />
-            </Link>
-            <Link className="mk-text-link" href={introHref}>
-              프로젝트 소개 <MoveRight size={17} />
-            </Link>
-          </div>
-          <div className="formal-hero-meta">
-            <span>모금기간</span>
-            <strong>2026.10.08 — 2026.12.25</strong>
-          </div>
-        </div>
-        <div className="formal-puzzle puzzle-card">
-          <div className="puzzle-heading">
-            <span>HALL OF ENERGY</span>
-            <Link href="/mockups/b?details=1#history">명예의 전당 ↗</Link>
-          </div>
-          <h2>
-            한 조각씩 완성해 갈<br />
-            우리의 첫 번째 교실
-          </h2>
-          <FundingPuzzle
-            amount={null}
-            ariaLabel="실제 집계가 미연결된 24조각 교정 퍼즐 목업"
-          />
-          <div className="formal-puzzle-note">
-            <span className="formal-live-dot" />
-            모금 집계 미연결 · 실제 참여 현황은 표시하지 않습니다.
-          </div>
-        </div>
-      </section>
+    <main id="mockup-main" tabIndex={-1} className="formal-home">
+      <div className="formal-classroom-hero">
+        <ClassroomHero donateHref={donateHref} />
+      </div>
       <section
         className="explain-flow mk-wrap"
         aria-labelledby="explain-heading"
@@ -476,7 +437,7 @@ export function MockupHome({ variant, introHref, donateHref }: HomeProps) {
                 <span aria-hidden="true">→</span>
                 <strong>801호 연간 전력량 산정</strong>
               </div>
-              <Link href="/mockups/b?details=1#plan">
+              <Link href="/mockups/b?details=1&section=plan#plan">
                 산정과 사용계획 자세히 보기 <ArrowUpRight size={16} />
               </Link>
             </div>
