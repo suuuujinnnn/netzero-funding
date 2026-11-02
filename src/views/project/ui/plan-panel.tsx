@@ -1,3 +1,5 @@
+import { PlanDiagram } from "./plan-diagram";
+
 export function PlanPanel() {
   return (
     <>
@@ -6,6 +8,7 @@ export function PlanPanel() {
         <h1>모인 금액은 어디에 쓰이나요?</h1>
         <p>전력량 산정부터 인증서 구매와 공개까지</p>
       </div>
+      <PlanDiagram />
       <ol className="plan-steps">
         <li>
           <span>01</span>

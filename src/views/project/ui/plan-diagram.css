@@ -1,0 +1,97 @@
+.funding-diagram {
+  margin: 24px 0 28px;
+  padding: 0;
+}
+.funding-diagram > figcaption {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+.funding-diagram-flow {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1fr 0.8fr 1fr;
+  align-items: center;
+  margin-top: 20px;
+}
+.funding-diagram-sources {
+  display: grid;
+  gap: 16px;
+}
+.funding-diagram-input {
+  display: flex;
+  height: 58px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  text-align: center;
+}
+.funding-diagram-input span,
+.funding-diagram-result span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.funding-diagram-input strong,
+.funding-diagram-result strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 650;
+}
+.funding-diagram-flow svg {
+  display: block;
+  width: 100%;
+  fill: none;
+  stroke: #aab9ae;
+  stroke-width: 1.5;
+}
+.funding-diagram-merge {
+  height: 132px;
+}
+.funding-diagram-arrow {
+  height: 24px;
+}
+.funding-diagram-purchase {
+  display: grid;
+  min-height: 68px;
+  place-items: center;
+  border-radius: 3px;
+  background: var(--green);
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 650;
+}
+.funding-diagram-result {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+.funding-diagram-footer {
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+@media (max-width: 680px) {
+  .funding-diagram-flow {
+    grid-template-columns: 1.3fr 0.35fr 1fr 0.35fr 0.95fr;
+    margin-top: 16px;
+  }
+  .funding-diagram-input strong,
+  .funding-diagram-result strong {
+    font-size: 13px;
+  }
+  .funding-diagram-input span,
+  .funding-diagram-result span {
+    font-size: 11px;
+  }
+  .funding-diagram-purchase {
+    font-size: 15px;
+  }
+}
