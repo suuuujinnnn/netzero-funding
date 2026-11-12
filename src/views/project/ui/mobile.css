@@ -204,33 +204,110 @@
   }
 }
 
-@media (max-width: 600px) {
-  .production-site .effects-stage {
-    display: grid;
-    height: auto;
-    padding-bottom: 24px;
+@media (max-width: 760px) {
+  .production-site .b-detail-effects .panel-heading {
+    padding-bottom: 20px;
   }
 
-  .production-site .effects-slide {
-    position: relative;
-    grid-area: 1 / 1;
-    align-self: start;
-    width: 72%;
+  .production-site .effects-content .effects-intro {
+    margin-top: 18px;
+    font-size: 13px;
+    line-height: 1.7;
   }
 
-  .production-site .effects-carousel-controls button {
-    top: calc(50% - 22px);
+  .production-site .effects-preview {
+    padding-top: 18px;
   }
 
-  .production-site .effects-tabs button,
+  .production-site .effects-toolbar {
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+
   .production-site .effects-replay {
-    min-height: 44px;
+    gap: 6px;
+    padding-inline: 8px;
+    font-size: 11px;
+  }
+
+  .production-site .effects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 6px;
+    padding: 8px 0 14px;
+  }
+
+  .production-site .effects-card {
+    height: 100%;
+    min-width: 0;
+    padding: 12px 6px 8px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px #233b280b;
+  }
+
+  .production-site .effects-card-summary {
+    padding: 0 0 8px;
+    margin-bottom: 6px;
+  }
+
+  .production-site .effects-eyebrow {
+    font-size: 9px;
+  }
+
+  .production-site .effects-preview .effects-card h2 {
+    font-size: clamp(15px, 4.4vw, 24px);
+    white-space: nowrap;
+  }
+
+  .production-site .effects-card small {
+    margin-left: 1px;
+  }
+
+  .production-site .effects-bolt {
+    font-size: 18px;
+    margin: 4px 0;
+  }
+
+  .production-site .effects-preview .effects-electricity {
+    font-size: clamp(19px, 5vw, 28px);
+    white-space: nowrap;
+  }
+
+  .production-site .effects-metrics {
+    gap: 6px;
+  }
+
+  .production-site .effects-metrics > div {
+    display: block;
+    min-height: 56px;
+    padding: 6px 4px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .production-site .effects-icon {
+    display: none;
   }
 
   .production-site .effects-metrics dt {
-    font-size: 12px;
+    font-size: 9px;
+    line-height: 1.4;
+    min-height: 26px;
   }
 
+  .production-site .effects-metrics dd {
+    margin-top: 4px;
+    font-size: clamp(10px, 2.9vw, 15px);
+    line-height: 1.4;
+    overflow-wrap: normal;
+  }
+
+  .production-site .effects-replay {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 600px) {
   .production-site .effects-table-scroll {
     border: 1px solid var(--line);
     border-radius: 14px;

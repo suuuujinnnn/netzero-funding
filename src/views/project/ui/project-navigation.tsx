@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { StaggeredContent } from "./staggered-content";
 
 const pages = [
   ["home", "홈"],
@@ -17,6 +16,18 @@ type PanelId = Exclude<PageId, "home">;
 
 function readPage(): PageId {
   return pages.find(([id]) => `#${id}` === window.location.hash)?.[0] ?? "home";
+}
+
+function revealMenuLink(link: HTMLAnchorElement | null | undefined) {
+  const menu = link?.parentElement;
+  if (!link || !menu || menu.scrollWidth <= menu.clientWidth) return;
+  const item = link.getBoundingClientRect();
+  const viewport = menu.getBoundingClientRect();
+  const inset = 4;
+  if (item.left < viewport.left + inset)
+    menu.scrollLeft += item.left - viewport.left - inset;
+  else if (item.right > viewport.right - inset)
+    menu.scrollLeft += item.right - viewport.right + inset;
 }
 
 export function ProjectNavigation({
@@ -42,6 +53,10 @@ export function ProjectNavigation({
     };
   }, []);
 
+  useEffect(() => {
+    revealMenuLink(links.current[pages.findIndex(([id]) => id === active)]);
+  }, [active]);
+
   function select(id: PageId) {
     setActive(id);
     if (window.location.hash !== `#${id}`)
@@ -49,16 +64,6 @@ export function ProjectNavigation({
     requestAnimationFrame(() => {
       document.getElementById("main")?.focus({ preventScroll: true });
       window.scrollTo({ top: 0, behavior: "instant" });
-      const link = links.current[pages.findIndex(([key]) => key === id)];
-      const list = link?.parentElement;
-      if (link && list) {
-        list.scrollLeft = Math.max(
-          0,
-          link.offsetLeft -
-            list.offsetLeft -
-            (list.clientWidth - link.offsetWidth) / 2,
-        );
-      }
     });
   }
 
@@ -120,11 +125,8 @@ export function ProjectNavigation({
                   else if (event.key === "End") next = pages.length - 1;
                   else return;
                   event.preventDefault();
-                  links.current[next]?.focus();
-                  links.current[next]?.scrollIntoView({
-                    block: "nearest",
-                    inline: "nearest",
-                  });
+                  links.current[next]?.focus({ preventScroll: true });
+                  revealMenuLink(links.current[next]);
                 }}
               >
                 {label}
@@ -143,10 +145,10 @@ export function ProjectNavigation({
         }
       >
         {active === "home" ? (
-          <StaggeredContent key="home">{home}</StaggeredContent>
+          home
         ) : (
-          <section id={active}>
-            <StaggeredContent key={active}>{panels[active]}</StaggeredContent>
+          <section id={active} key={active}>
+            {panels[active]}
           </section>
         )}
         <noscript>

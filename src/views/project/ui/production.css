@@ -24,13 +24,6 @@
   color: white;
   font-size: 15px;
   font-weight: 750;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-}
-.production-site .mk-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px #234a3c20;
 }
 .production-site .mk-button {
   border-radius: 3px;
@@ -404,14 +397,6 @@
 }
 .production-site .garden-ring {
   border-color: #a5b66a;
-}
-.production-site .garden-board {
-  animation: mk-enter 0.7s both;
-}
-@media (prefers-reduced-motion: reduce) {
-  .production-site .garden-board {
-    animation: none;
-  }
 }
 .production-site .garden-hero .garden-card {
   background: #ffffff65;
@@ -879,17 +864,6 @@
     transition: none !important;
   }
 }
-@keyframes mk-enter {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Keep the deployed header-inner / site-title logo markup and its original styles. */
 .production-site .b-topbar .production-logo-group {
   width: auto;

@@ -1,33 +1,33 @@
+.project-page .b-site-menu > a:focus-visible {
+  outline-offset: -3px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .project-page .garden-scene > img {
-    --classroom-lift: -14px;
-    animation: classroom-float 6s ease-in-out infinite;
-  }
-  .project-page :is(.b-site-menu > a, .nav-inner button, .effects-tabs button) {
+  .project-page :is(.b-site-menu > a, .mk-button, .effects-replay) {
     transition:
-      background-color 180ms ease,
-      color 180ms ease;
+      background-color 150ms ease,
+      color 150ms ease;
   }
 }
-@keyframes classroom-float {
-  0%,
-  100% {
-    translate: 0 0;
+
+@media (hover: hover) {
+  .production-site .b-topbar .b-site-menu > a:not([aria-current]):hover,
+  .project-page .effects-replay:hover {
+    background-color: #e8eee4;
   }
-  50% {
-    translate: 0 var(--classroom-lift);
+
+  .production-site
+    .b-topbar
+    .b-site-menu
+    > a:last-child:not([aria-current]):hover {
+    background-color: #c9e38b;
   }
-}
-@media (max-width: 680px) and (prefers-reduced-motion: no-preference) {
-  .project-page .garden-scene > img {
-    --classroom-lift: -8px;
+
+  .project-page .mk-button:hover {
+    background-color: #1b392e;
   }
-}
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .project-page .effects-table-scroll tbody tr {
-    transition: background-color 150ms ease;
-  }
+
   .project-page .effects-table-scroll tbody tr:hover {
-    background: #edf3e6;
+    background-color: #edf3e6;
   }
 }
