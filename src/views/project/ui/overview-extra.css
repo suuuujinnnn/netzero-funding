@@ -2,23 +2,26 @@
   margin: 32px 0;
 }
 .overview-details > summary {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
   min-height: 56px;
   padding: 14px 22px;
   border: 1px solid var(--green);
   border-radius: 999px;
-  background: var(--green);
-  color: white;
+  background: transparent;
+  color: var(--green);
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   list-style: none;
 }
 .overview-details > summary:hover {
-  background: #315f4e;
+  background: #234a3c0d;
 }
 .overview-details > summary::-webkit-details-marker {
   display: none;
@@ -28,12 +31,12 @@
   outline-offset: 4px;
 }
 .overview-details-icon {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1;
 }
 .overview-details[open] .overview-details-icon {
-  transform: rotate(45deg);
+  transform: rotate(180deg);
 }
 .overview-extra article img {
   display: block;

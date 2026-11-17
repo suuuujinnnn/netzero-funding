@@ -82,7 +82,7 @@ export function OverviewPanel({ planHref }: { planHref?: string } = {}) {
         <summary>
           <span>재생에너지와 프로젝트 자세히 보기</span>
           <span className="overview-details-icon" aria-hidden="true">
-            +
+            ↓
           </span>
         </summary>
         <div className="prose overview-extra">
