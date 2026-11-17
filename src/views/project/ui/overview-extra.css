@@ -1,19 +1,24 @@
 .overview-details {
   margin: 32px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
 }
 .overview-details > summary {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
-  min-height: 60px;
-  padding: 16px 0;
-  color: var(--green);
+  min-height: 56px;
+  padding: 14px 22px;
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  background: var(--green);
+  color: white;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   list-style: none;
+}
+.overview-details > summary:hover {
+  background: #315f4e;
 }
 .overview-details > summary::-webkit-details-marker {
   display: none;
