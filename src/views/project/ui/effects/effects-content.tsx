@@ -108,6 +108,48 @@ export function EffectsContent() {
             </table>
           </div>
         </article>
+        <article className="effects-section effects-meaning">
+          <h2>프로젝트의 의의 및 확장 가능성</h2>
+          <p>학생들의 작은 실천이 만들어내는 변화</p>
+          <div className="effects-meaning-grid">
+            <section>
+              <span>01 | 사회</span>
+              <h3>누구나 참여할 수 있는 재생에너지 전환</h3>
+              <p>
+                재생에너지 전환이 정부와 기업뿐만 아니라 개인도 함께 만들어갈 수
+                있는 변화임을 보여줍니다. 이를 통해 재생에너지에 대한 사회적
+                관심과 참여를 확대하고자 합니다.
+              </p>
+            </section>
+            <section>
+              <span>02 | 국민대학교</span>
+              <h3>학생 주도형 재생에너지 전환 모델 제시</h3>
+              <p>
+                기존의 에너지 절약 캠페인을 넘어, 학생들이 직접 재생에너지
+                전환에 참여하는 새로운 모델을 제시합니다. 이를 통해 대학 내
+                재생에너지 전환의 가능성을 확인하고자 합니다.
+              </p>
+            </section>
+            <section>
+              <span>03 | 학생</span>
+              <h3>이론을 넘어 실천하는 기후행동</h3>
+              <p>
+                학생들이 재생에너지 전환 과정에 직접 참여하며 REC의 역할과
+                의미를 이해하고, 기후변화 대응을 일상에서 실천하는 경험을
+                제공합니다.
+              </p>
+            </section>
+          </div>
+          <h3>확장 가능성</h3>
+          <p>
+            <strong>하나의 강의실에서 시작해, 캠퍼스 전체로.</strong>
+          </p>
+          <p>
+            북악관 801호에서 시작된 이번 프로젝트가 다른 강의실과 교내 공간으로
+            확대되고, 나아가 다른 대학에서도 활용할 수 있는 학생 주도형
+            재생에너지 전환 모델로 발전하기를 기대합니다.
+          </p>
+        </article>
         <article
           className="effects-section effects-sources"
           aria-labelledby="effects-sources-title"

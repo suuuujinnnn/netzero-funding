@@ -43,7 +43,10 @@ export function ProjectHome() {
                   </dd>
                 </div>
               </dl>
-              <p>국민대학교 구성원이 함께 만들어갈 목표입니다.</p>
+              <p>
+                국민대학교 전력 사용량과 건물 단위 면적을 기준으로 북악관
+                801호의 연간 전력량을 산정합니다.
+              </p>
             </div>
             <BookOpen size={65} strokeWidth={1} />
           </li>
@@ -54,10 +57,11 @@ export function ProjectHome() {
               <h3>학생의 작은 선택을 모읍니다.</h3>
               <p>
                 절약을 넘어, 전력 소비자인 개인도 에너지 전환의 주체가 되는
-                실험입니다.
+                실험입니다. 해외 대학에서는 학생들이 조성한 기금으로 재생에너지
+                인증서를 구매해 왔습니다.
               </p>
-              <a href="#donate">
-                참여 방법 확인하기 <ArrowUpRight size={16} />
+              <a href="https://www.lclark.edu/live/news/41092-students-power-the-colleges-larger-sustainability">
+                학생 참여 사례 보기 <ArrowUpRight size={16} />
               </a>
             </div>
             <Users size={65} strokeWidth={1} />
@@ -89,6 +93,9 @@ export function ProjectHome() {
                 굿뉴스에너지와 협력하여 산정 전력량에 상응하는 REC를 구매합니다.
                 기부금은 재생에너지의 환경가치 조달에 전액 사용합니다.
               </p>
+              <a href="https://www.knrec.or.kr/biz/introduce/new_rps/intro_cert_submit.do?gubun=C">
+                재생에너지 인증서 알아보기 <ArrowUpRight size={16} />
+              </a>
               <div className="explain-rec-split">
                 <span>재생에너지 발전</span>
                 <span aria-hidden="true">→</span>

@@ -7,7 +7,7 @@ export function PlanDiagram() {
       <div
         className="funding-diagram-flow"
         role="img"
-        aria-label="북악관 801호의 전력량을 산정하고, 기부금 전액으로 산정 전력량에 상응하는 REC를 구매한 뒤 구매·사용 내역을 공개합니다."
+        aria-label="북악관 801호의 전력량을 산정하고, 기부금 전액으로 산정 전력량에 상응하는 재생에너지 인증서를 구매한 뒤 구매·사용 내역을 공개합니다."
       >
         <div className="funding-diagram-sources" aria-hidden="true">
           <div className="funding-diagram-input">
@@ -28,7 +28,7 @@ export function PlanDiagram() {
           <path d="M0 29H35Q50 29 50 44V88Q50 103 35 103H0M50 66H100" />
         </svg>
         <div className="funding-diagram-purchase" aria-hidden="true">
-          REC 구매
+          재생에너지 인증서 구매
         </div>
         <svg
           className="funding-diagram-arrow"

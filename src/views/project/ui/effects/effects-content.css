@@ -153,3 +153,29 @@
     font-size: 14px;
   }
 }
+
+.effects-meaning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 28px 0;
+}
+.effects-meaning-grid section {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.effects-meaning-grid span {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+}
+.effects-meaning h3 {
+  margin: 16px 0 10px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+@media (max-width: 760px) {
+  .effects-meaning-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -29,6 +29,6 @@ function effectFor(amount: number) {
 }
 export type EffectsData = ReturnType<typeof effectFor>;
 export const effectsData = [1000, 10000, 100000].map(effectFor);
-export const allEffectsData = [
-  300, 1000, 10000, 50000, 100000, 500000, 800000, 1000000,
-].map(effectFor);
+export const allEffectsData = [1000, 10000, 50000, 100000, 500000].map(
+  effectFor,
+);
