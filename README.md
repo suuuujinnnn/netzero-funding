@@ -34,7 +34,7 @@ pnpm start --port 3001
 
 [참여 내역 제출 폼](https://forms.gle/BYB5QtEWabs9sryR6)은 외부 서비스입니다. 사이트는 폼 제출이나 입금 완료를 판정하지 않습니다. 서버가 비공개 Google Sheets에서 확인 완료 총액·건수·공개 동의 이름만 가져오고, 브라우저는 `/api/funding`을 5분 간격으로 조회합니다.
 
-[시트 운영 안내](docs/funding-sheet-setup.md)에 따라 서버 전용 인증을 설정합니다. Vercel은 저장소 루트를 Next.js 프로젝트로 사용하며 `pnpm install --frozen-lockfile`, `pnpm build`로 빌드합니다. 코드 변경과 실제 배포·외부 서비스 검증은 구분해 보고합니다.
+[시트 운영 안내](docs/funding-sheet-setup.md)에 따라 Apps Script 공개 집계와 서버 환경변수를 설정합니다. Vercel은 저장소 루트를 Next.js 프로젝트로 사용하며 `pnpm install --frozen-lockfile`, `pnpm build`로 빌드합니다. 코드 변경과 실제 배포·외부 서비스 검증은 구분해 보고합니다.
 
 ## 작업 문서
 
