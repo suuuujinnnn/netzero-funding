@@ -55,8 +55,8 @@ export function HistoryPanel({ state }: { state: FundingState }) {
       </div>
       <p className="history-privacy">
         공개에 동의하고 입금 확인이 완료된 참여자의 이름만 표시합니다. 시트 변경
-        후 홈페이지 반영까지 시간이 걸릴 수 있습니다. 홈페이지는 5분 간격으로
-        집계를 다시 조회합니다.
+        후 홈페이지를 새로고침하면 집계를 다시 조회합니다. 반영까지 시간이 걸릴
+        수 있습니다.
       </p>
     </>
   );

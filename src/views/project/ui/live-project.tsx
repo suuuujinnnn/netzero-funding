@@ -4,7 +4,7 @@ import { ProjectNavigation } from "./project-navigation";
 import { ProjectHero } from "./project-hero";
 import type { FundingState } from "./funding-data";
 import { HistoryPanel } from "./history-panel";
-import { INITIAL_FUNDING, REFRESH_INTERVAL, loadFunding } from "./funding-data";
+import { INITIAL_FUNDING, loadFunding } from "./funding-data";
 
 export function LiveProject({
   heroImage,
@@ -59,10 +59,8 @@ export function LiveProject({
       }
     };
     void refresh();
-    const interval = window.setInterval(() => void refresh(), REFRESH_INTERVAL);
     return () => {
       disposed = true;
-      window.clearInterval(interval);
       active?.abort();
     };
   }, []);
