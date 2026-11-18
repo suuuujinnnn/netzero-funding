@@ -62,8 +62,19 @@ export function PlanPanel() {
         </li>
       </ol>
       <section className="measurement" aria-labelledby="measurement-title">
-        <h2 id="measurement-title">전력 사용량 측정 정리</h2>
-        <p>북악관 801호의 기기별 연간 예상 전력 사용량입니다.</p>
+        <div className="measurement-heading">
+          <div>
+            <span className="measurement-kicker">801 / ELECTRICITY</span>
+            <h2 id="measurement-title">전력 사용량 측정 정리</h2>
+            <p>북악관 801호의 기기별 연간 예상 전력 사용량입니다.</p>
+          </div>
+          <div className="measurement-total">
+            <span>연간 예상 전력 사용량</span>
+            <strong>
+              4,250.5 <small>kWh</small>
+            </strong>
+          </div>
+        </div>
         <div
           className="measurement-table-wrap"
           tabIndex={0}
@@ -91,7 +102,7 @@ export function PlanPanel() {
                   ))}
                 </tr>
               ))}
-              <tr>
+              <tr className="measurement-total-row">
                 <th scope="row" colSpan={5}>
                   합계
                 </th>
@@ -102,30 +113,38 @@ export function PlanPanel() {
             </tbody>
           </table>
         </div>
-        <p>
+        <p className="measurement-formula">
           기기별 전력량 = 대수 × 소비전력(W) ÷ 1,000 × 연 사용시간(h) × 이용률
         </p>
-        <ul>
-          <li>
-            2025년 801호 시간표 기준 주당 24시간, 연 30주 수업으로 연간
-            720시간을 적용했습니다.
-          </li>
-          <li>
-            냉방과 난방은 기상청 서울 일별 자료를 바탕으로 각각 29일, 174시간을
-            적용했습니다.
-          </li>
-          <li>출결 단말기는 하루 24시간, 연 8,760시간 가동을 적용했습니다.</li>
-        </ul>
-        <p>
-          자료에는 좌석 콘센트 이용률이 43%로 기재되어 있으나, 함께 기재된
-          수강생 24명 중 13명은 약 54.2%에 해당합니다. 해당 수치는 확인이
-          필요합니다.
-        </p>
-        <p>
-          전자 강의대의 기재 전력량 41.4kWh도 표의 소비전력과 사용시간으로
-          계산한 값 41.76kWh와 차이가 있어 확인이 필요합니다. 위 표와 합계는
-          제공된 자료의 값을 그대로 표시했습니다.
-        </p>
+        <div className="measurement-basis">
+          <h3>산정 기준</h3>
+          <ul>
+            <li>
+              2025년 801호 시간표 기준 주당 24시간, 연 30주 수업으로 연간
+              720시간을 적용했습니다.
+            </li>
+            <li>
+              냉방과 난방은 기상청 서울 일별 자료를 바탕으로 각각 29일,
+              174시간을 적용했습니다.
+            </li>
+            <li>
+              출결 단말기는 하루 24시간, 연 8,760시간 가동을 적용했습니다.
+            </li>
+          </ul>
+        </div>
+        <div className="measurement-notes">
+          <h3>측정 자료 확인 사항</h3>
+          <p>
+            자료에는 좌석 콘센트 이용률이 43%로 기재되어 있으나, 함께 기재된
+            수강생 24명 중 13명은 약 54.2%에 해당합니다. 해당 수치는 확인이
+            필요합니다.
+          </p>
+          <p>
+            전자 강의대의 기재 전력량 41.4kWh도 표의 소비전력과 사용시간으로
+            계산한 값 41.76kWh와 차이가 있어 확인이 필요합니다. 위 표와 합계는
+            제공된 자료의 값을 그대로 표시했습니다.
+          </p>
+        </div>
       </section>
       <div className="plan-summary">
         <h2>프로젝트 한눈에 보기</h2>
