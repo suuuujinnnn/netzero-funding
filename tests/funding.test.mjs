@@ -60,13 +60,12 @@ test("published script exposes only validated aggregate values", () => {
 test("puzzle boundaries", () => {
   for (const [a, n] of [
     [0, 0],
-    [41666, 0],
-    [41667, 1],
-    [500000, 12],
-    [800000, 19],
-    [999999, 23],
-    [1000000, 24],
-    [1100000, 24],
+    [20833, 0],
+    [20834, 1],
+    [250000, 12],
+    [499999, 23],
+    [500000, 24],
+    [550000, 24],
   ])
     assert.equal(filledPieces(a), n);
 });

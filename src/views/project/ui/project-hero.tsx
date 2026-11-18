@@ -41,7 +41,7 @@ export function ProjectHero({
         </h2>
         <div className="garden-ring">
           <div>
-            <strong>8,000</strong>
+            <strong>5,000</strong>
             <span>kWh · 목표 전력량</span>
           </div>
         </div>

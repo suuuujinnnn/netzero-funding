@@ -33,19 +33,19 @@ export function ProjectHome() {
                 <div>
                   <dt>목표 전력량</dt>
                   <dd>
-                    약 <strong>8,000</strong> kWh
+                    <strong>5,000</strong> kWh
                   </dd>
                 </div>
                 <div>
                   <dt>목표 모금액</dt>
                   <dd>
-                    약 <strong>1,000,000</strong> 원
+                    <strong>500,000</strong> 원
                   </dd>
                 </div>
               </dl>
               <p>
-                국민대학교 전력 사용량과 건물 단위 면적을 기준으로 북악관
-                801호의 연간 전력량을 산정합니다.
+                북악관 801호의 기기별 전력 사용량을 합산한 연간 사용량은
+                4,250.5kWh입니다.
               </p>
             </div>
             <BookOpen size={65} strokeWidth={1} />
@@ -72,9 +72,7 @@ export function ProjectHome() {
               <p className="explain-label">전력량 산정</p>
               <h3>한 교실이 사용하는 전력량을 계산합니다.</h3>
               <div className="explain-equation">
-                <span>국민대학교 전력 사용량</span>
-                <span aria-hidden="true">·</span>
-                <span>건물 단위 면적</span>
+                <span>기기별 전력 사용량 합계</span>
                 <span aria-hidden="true">→</span>
                 <strong>801호 연간 전력량 산정</strong>
               </div>
@@ -90,8 +88,9 @@ export function ProjectHome() {
               <p className="explain-label">REC 구매</p>
               <h3>모금액으로 재생에너지 인증서를 구매합니다.</h3>
               <p>
-                굿뉴스에너지와 협력하여 산정 전력량에 상응하는 REC를 구매합니다.
-                기부금은 재생에너지의 환경가치 조달에 전액 사용합니다.
+                굿뉴스에너지와 협력하여 연간 사용량을 올림한 5REC(5,000kWh)를
+                500,000원에 구매할 계획입니다. 기부금은 재생에너지의 환경가치
+                조달에 전액 사용합니다.
               </p>
               <a href="https://www.knrec.or.kr/biz/introduce/new_rps/intro_cert_submit.do?gubun=C">
                 재생에너지 인증서 알아보기 <ArrowUpRight size={16} />
