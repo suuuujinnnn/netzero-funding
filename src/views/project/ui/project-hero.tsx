@@ -92,7 +92,7 @@ export function ProjectHero({
             ? `확인 완료 ${number.format(state.data.count)}건`
             : "확인된 모금 현황을 불러옵니다."}
         </p>
-        <p>모금기간 2026.10.08 — 2026.12.25</p>
+        <p>모금기간 2026.11.23 — 2026.12.06</p>
         <a className="mk-button" href="#donate">
           기부하기 <ArrowUpRight size={18} />
         </a>

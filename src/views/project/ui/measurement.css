@@ -1,0 +1,50 @@
+.measurement {
+  margin: 3rem 0;
+}
+
+.measurement h2 {
+  margin-bottom: 0.75rem;
+}
+
+.measurement > p,
+.measurement li {
+  margin: 0.75rem 0;
+  line-height: 1.7;
+}
+
+.measurement ul {
+  padding-left: 1.3rem;
+  list-style: disc;
+}
+
+.measurement-table-wrap {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.measurement table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.measurement caption {
+  text-align: left;
+  margin-bottom: 0.75rem;
+}
+
+.measurement th,
+.measurement td {
+  padding: 0.7rem;
+  border-bottom: 1px solid #d8dfd7;
+  text-align: right;
+}
+
+.measurement th:first-child {
+  text-align: left;
+}
+
+.measurement thead {
+  background: #e8eee5;
+}
