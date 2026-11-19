@@ -45,7 +45,7 @@ export function ProjectHome() {
               </dl>
               <p>
                 북악관 801호의 기기별 전력 사용량을 합산한 연간 사용량은
-                4,250.5kWh입니다.
+                4,257kWh입니다.
               </p>
             </div>
             <BookOpen size={65} strokeWidth={1} />
