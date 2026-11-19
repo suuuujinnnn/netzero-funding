@@ -286,7 +286,10 @@
   }
 
   .production-site .effects-icon {
-    display: none;
+    display: block;
+    margin-bottom: 3px;
+    font-size: clamp(17px, 5vw, 22px);
+    line-height: 1;
   }
 
   .production-site .effects-metrics dt {

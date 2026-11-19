@@ -244,8 +244,8 @@ export function OverviewPanel({ planHref }: { planHref?: string } = {}) {
             </p>
             <Image
               src="/assets/illustrations/student-cases.png"
-              width={650}
-              height={340}
+              width={1717}
+              height={916}
               alt="학생 참여형 재생에너지 전환 사례: 미국 Lewis &amp; Clark College, 일본 대학 축제, 대한민국 서스테이너블웨이브 페스티벌"
             />
           </article>
