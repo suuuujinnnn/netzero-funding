@@ -36,6 +36,10 @@ export function EffectsContent() {
         같은 양의 일반 전력 사용에 대응하는 온실가스 배출량을 소나무의 흡수량과
         자동차 주행거리로 비교해 보세요.
       </p>
+      <p className="effects-intro">
+        아래 금액별 환산은 이번 캠페인에서 구매할 수 있는 재생에너지 전력량과
+        그에 해당하는 배출량의 규모를 쉽게 비교하기 위한 예시입니다.
+      </p>
       <EffectsPreview />
       <div className="prose effects-body">
         <article
