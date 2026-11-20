@@ -20,9 +20,7 @@ export function PartnersPanel() {
           />
           <div>
             <span className="partner-role">프로젝트 주관</span>
-            <h2>
-              프로젝트 제로섬 <small>ZEROSUM</small>
-            </h2>
+            <h2>프로젝트 제로섬</h2>
             <p>
               국민대학교 넷제로 동아리의 대학생 팀. 강의실 전력량 산정과
               프로젝트 운영을 맡습니다.

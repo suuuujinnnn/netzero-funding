@@ -89,8 +89,8 @@ export function ProjectHome() {
               <h3>모금액으로 재생에너지 인증서를 구매합니다.</h3>
               <p>
                 굿뉴스에너지와 협력하여 연간 사용량을 올림한 5REC(5,000kWh)를
-                500,000원에 구매할 계획입니다. 기부금은 재생에너지의 환경가치
-                조달에 전액 사용합니다.
+                특별 공급가로 총 500,000원(부가세 포함)에 구매합니다. 기부금은
+                재생에너지의 환경가치 조달에 전액 사용합니다.
               </p>
               <a href="https://www.knrec.or.kr/biz/introduce/new_rps/intro_cert_submit.do?gubun=C">
                 재생에너지 인증서 알아보기 <ArrowUpRight size={16} />
