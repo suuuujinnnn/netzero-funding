@@ -3,7 +3,7 @@ import { allEffectsData, effectsCriteria, effectsData } from "./effects-data";
 import "./effects-content.css";
 
 const criteria = [
-  ["REC 구매단가", "100kWh당 10,000원", "REC 구매 기업 제시 단가"],
+  ["REC 구매 가격", "굿뉴스에너지 특별 공급가(부가세 포함)"],
   [
     "전력 배출계수",
     `${effectsCriteria.gridEmissions}kgCO₂eq/kWh`,
@@ -167,7 +167,9 @@ export function EffectsContent() {
                 <dt>{label}</dt>
                 <dd>
                   <strong>{value}</strong>
-                  <span>{href ? <a href={href}>{source}</a> : source}</span>
+                  {source && (
+                    <span>{href ? <a href={href}>{source}</a> : source}</span>
+                  )}
                 </dd>
               </div>
             ))}

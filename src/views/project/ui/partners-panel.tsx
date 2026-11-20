@@ -93,8 +93,8 @@ export function PartnersPanel() {
             <span className="partner-role">인증서 판매 및 소각</span>
             <h2>굿뉴스에너지</h2>
             <p>
-              재생에너지 인증서 판매와 소각을 담당하는 협력 단체로
-              소개되었습니다.
+              기업 RE100 자문과 재생에너지 조달부터 개인 구독 서비스까지
+              운영하는 재생에너지 전문 기업입니다.
             </p>
             <a
               href="https://goodnews.energy/"
