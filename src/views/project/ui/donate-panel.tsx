@@ -3,7 +3,7 @@ export function DonatePanel({ planHref }: { planHref?: string } = {}) {
   return (
     <>
       <div className="panel-heading">
-        <span className="eyebrow">05 / HOW TO JOIN</span>
+        <span className="eyebrow">06 / HOW TO JOIN</span>
         <h1>기부 방법 안내</h1>
         <p>입금, 내역 제출, 확인의 세 단계로 참여합니다.</p>
       </div>
@@ -14,6 +14,7 @@ export function DonatePanel({ planHref }: { planHref?: string } = {}) {
             <div>
               <h2>계좌 이체</h2>
               <p>아래 계좌로 입금한 뒤 구글 폼에 참여 내역을 제출해 주세요.</p>
+              <p>모금 최소 금액은 1,000원입니다.</p>
               <CopyAccount bank="카카오뱅크 · 장*진" account="3333384575014" />
             </div>
           </li>

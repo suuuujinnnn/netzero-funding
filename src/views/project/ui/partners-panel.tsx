@@ -4,7 +4,7 @@ export function PartnersPanel() {
   return (
     <>
       <div className="panel-heading">
-        <span className="eyebrow">03 / PARTNERS</span>
+        <span className="eyebrow">04 / PARTNERS</span>
         <h1>함께하는 단체</h1>
         <p>펀딩에 함께하는 단체와 각 단체의 주요 활동을 소개합니다.</p>
       </div>

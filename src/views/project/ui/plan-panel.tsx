@@ -22,7 +22,7 @@ export function PlanPanel() {
   return (
     <>
       <div className="panel-heading">
-        <span className="eyebrow">02 / FUNDING PLAN</span>
+        <span className="eyebrow">03 / FUNDING PLAN</span>
         <h1>모인 금액은 어디에 쓰이나요?</h1>
         <p>전력량 산정부터 인증서 구매와 공개까지</p>
       </div>
@@ -45,7 +45,8 @@ export function PlanPanel() {
             <p>
               자체 재생에너지 발전소를 보유한 굿뉴스에너지와 협력하여 연간
               사용량을 올림한 5REC(5,000kWh)를 특별 공급가로 총 500,000원(부가세
-              포함)에 구매합니다.
+              포함)에 구매합니다. 재생에너지의 최소 구매 단위는 1REC =
+              1,000kWh입니다.
             </p>
           </div>
         </li>
@@ -149,7 +150,7 @@ export function PlanPanel() {
           </div>
           <div>
             <dt>사업기간</dt>
-            <dd>2026.10.08 ~ 2027.02.28</dd>
+            <dd>2026.11.23 ~ 2026.12.17</dd>
           </div>
           <div>
             <dt>대상</dt>
@@ -172,6 +173,13 @@ export function PlanPanel() {
         <p>
           <strong>목표금액 미달 시</strong> 사업계획을 조정해 모금액 규모에 맞게
           사업을 진행하겠습니다.
+        </p>
+      </div>
+      <div className="plan-footnote">
+        <span aria-hidden="true">✓</span>
+        <p>
+          <strong>목표금액 달성 시</strong> 추가 모금을 받지 않고 조기
+          종료됩니다.
         </p>
       </div>
     </>

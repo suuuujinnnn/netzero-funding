@@ -7,7 +7,7 @@ export function HistoryPanel({ state }: { state: FundingState }) {
   return (
     <>
       <div className="panel-heading">
-        <span className="eyebrow">04 / HALL OF ENERGY</span>
+        <span className="eyebrow">05 / HALL OF ENERGY</span>
         <h1>명예의 전당</h1>
         <p>작은 참여가 모여 첫 번째 교실의 선택이 됩니다.</p>
       </div>
