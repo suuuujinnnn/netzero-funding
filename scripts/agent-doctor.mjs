@@ -138,7 +138,7 @@ for (const file of [
   "src/views/project/ui/donate-panel.tsx",
   "src/views/project/ui/effects/effects-content.tsx",
   "public/assets/illustrations/green-classroom.png",
-  "public/assets/univ.jpg",
+  "public/assets/mrdrKookmin.png",
   "public/assets/partners/zerosum.png",
   "public/assets/partners/netzero.png",
   "public/assets/partners/climate.png",

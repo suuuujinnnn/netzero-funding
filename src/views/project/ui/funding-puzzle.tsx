@@ -108,7 +108,7 @@ export function FundingPuzzle({
       </defs>
       <rect width="800" height="600" rx="28" fill="#d7ed9f" />
       <image
-        href="/assets/univ.jpg"
+        href="/assets/mrdrKookmin.png"
         width="800"
         height="600"
         preserveAspectRatio="xMidYMid slice"
