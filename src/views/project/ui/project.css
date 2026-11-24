@@ -942,8 +942,8 @@
 }
 @media (prefers-reduced-motion: no-preference) {
   .puzzle-piece.is-filled path {
-    animation: puzzle-photo-reveal 620ms ease-out
-      calc(150ms + var(--reveal-delay)) backwards;
+    animation: puzzle-photo-reveal 300ms ease-out
+      calc(150ms + var(--reveal-index) * 110ms) backwards;
   }
 }
 @keyframes puzzle-photo-reveal {

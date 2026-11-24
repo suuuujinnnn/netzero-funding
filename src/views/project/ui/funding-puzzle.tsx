@@ -1,5 +1,12 @@
 import type { CSSProperties } from "react";
 import { filledPieces } from "./funding-data";
+
+// Keep the same scattered reveal order for every visit and funding amount.
+const revealOrder = [
+  8, 21, 4, 12, 17, 1, 23, 9, 6, 15, 2, 19, 11, 0, 14, 22, 5, 18, 10, 3, 20, 7,
+  16, 13,
+];
+
 const pieces = [
   {
     path: "M 0.00 0.00 L 124.29 0.00 L 129.53 36.74 C 131.00 47.02 127.75 51.98 123.13 49.65 C 104.30 44.84 99.93 60.46 102.45 78.09 C 104.97 95.72 113.54 109.49 130.27 99.61 C 134.05 96.07 138.56 99.92 140.03 110.21 L 145.28 146.94 L 108.96 154.21 C 98.79 156.24 93.66 153.28 95.74 148.54 C 99.49 129.51 83.68 126.02 66.25 129.51 C 48.81 133.00 35.56 142.30 46.34 158.42 C 50.08 162.00 46.49 166.70 36.32 168.74 L 0.00 176.00 L 0.00 0.00 Z",
@@ -108,32 +115,34 @@ export function FundingPuzzle({
         clipPath="url(#puzzle-outline)"
       />
       <g id="puzzle-pieces" clipPath="url(#puzzle-outline)">
-        {pieces.map((piece, index) => (
-          <g
-            key={index}
-            className={
-              index < filled
-                ? "puzzle-piece is-filled"
-                : "puzzle-piece is-empty"
-            }
-            role="group"
-            aria-label={`${index + 1}번째 조각, ${index < filled ? "채워짐" : "비어 있음"}`}
-          >
-            <path
-              d={piece.path}
-              fill="#31584b"
-              fillOpacity={index < filled ? 0 : 1}
-              style={
-                index < filled
-                  ? ({ "--reveal-delay": `${index * 28}ms` } as CSSProperties)
-                  : undefined
+        {pieces.map((piece, index) => {
+          const revealIndex = revealOrder.indexOf(index);
+          const isFilled = revealIndex < filled;
+          return (
+            <g
+              key={index}
+              className={
+                isFilled ? "puzzle-piece is-filled" : "puzzle-piece is-empty"
               }
-              stroke={index < filled ? "#234a3c" : "#a1c2a0"}
-              strokeWidth={5}
-              strokeLinejoin="round"
-            />
-          </g>
-        ))}
+              role="group"
+              aria-label={`${index + 1}번째 조각, ${isFilled ? "채워짐" : "비어 있음"}`}
+            >
+              <path
+                d={piece.path}
+                fill="#31584b"
+                fillOpacity={isFilled ? 0 : 1}
+                style={
+                  isFilled
+                    ? ({ "--reveal-index": revealIndex } as CSSProperties)
+                    : undefined
+                }
+                stroke={isFilled ? "#234a3c" : "#a1c2a0"}
+                strokeWidth={5}
+                strokeLinejoin="round"
+              />
+            </g>
+          );
+        })}
       </g>
       <rect
         width="800"
