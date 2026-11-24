@@ -29,6 +29,7 @@
     padding: 8px 3px;
     font-size: clamp(9px, 2.7vw, 12px);
     letter-spacing: -0.04em;
+    touch-action: manipulation;
   }
 
   .production-site .b-topbar .b-site-menu > a:last-child {

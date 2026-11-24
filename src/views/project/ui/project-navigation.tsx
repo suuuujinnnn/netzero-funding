@@ -89,6 +89,7 @@ export function ProjectNavigation({
           )?.[0];
         else if (
           link &&
+          !link.closest(".b-site-menu") &&
           !link.hasAttribute("target") &&
           !link.hasAttribute("download")
         ) {
@@ -115,6 +116,17 @@ export function ProjectNavigation({
                 }}
                 href={`#${id}`}
                 aria-current={active === id ? "page" : undefined}
+                onClick={(event) => {
+                  if (
+                    event.ctrlKey ||
+                    event.metaKey ||
+                    event.shiftKey ||
+                    event.altKey
+                  )
+                    return;
+                  event.preventDefault();
+                  select(id);
+                }}
                 onKeyDown={(event) => {
                   let next: number;
                   if (event.key === "ArrowRight")
