@@ -1514,9 +1514,14 @@
   margin: 0 0 12px;
   font-size: 18px;
 }
+.supporter-thanks {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
 .supporter-names {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 10px;
   margin: 0;
   padding: 0;
@@ -1524,11 +1529,29 @@
 }
 .supporter-names li {
   padding: 14px 16px;
-  border-bottom: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
   color: var(--green);
   font-weight: 700;
   overflow-wrap: anywhere;
   word-break: normal;
+}
+@media (min-width: 768px) {
+  .supporter-names {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .supporter-name-entered {
+    animation: supporter-name-enter 250ms ease-out;
+  }
+}
+@keyframes supporter-name-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
 }
 .supporter-empty {
   padding: 0;

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { FundingPuzzle } from "./funding-puzzle";
 import { FUNDING_TARGET } from "./funding-data";
 import { FundingStatus } from "./funding-status";
@@ -12,6 +13,35 @@ const fundingPercent = new Intl.NumberFormat("ko-KR", {
 export function HistoryPanel({ state }: { state: FundingState }) {
   const data = state.data;
   const hasFunding = data !== null && state.status !== "unconfigured";
+  const names = data?.names;
+  const namesList = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const list = namesList.current;
+    if (
+      !list ||
+      !("IntersectionObserver" in window) ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const { isIntersecting, target } of entries) {
+        if (!isIntersecting) continue;
+        target.classList.add("supporter-name-entered");
+        observer.unobserve(target);
+      }
+    });
+
+    for (const nameplate of list.children) {
+      if (!nameplate.classList.contains("supporter-name-entered")) {
+        observer.observe(nameplate);
+      }
+    }
+
+    return () => observer.disconnect();
+  }, [names]);
   return (
     <>
       <div className="panel-heading">
@@ -39,12 +69,22 @@ export function HistoryPanel({ state }: { state: FundingState }) {
         </div>
         <div className="history-detail">
           <h2 className="supporter-heading">함께한 이름</h2>
-          {data?.names.length ? (
-            <ul className="supporter-names" aria-label="공개에 동의한 참여자">
-              {data.names.map((name, index) => (
-                <li key={index}>{name}</li>
-              ))}
-            </ul>
+          {names?.length ? (
+            <>
+              <p className="supporter-thanks">
+                첫 번째 교실을 함께 만들어 주셔서 고맙습니다.
+              </p>
+              <ul
+                ref={namesList}
+                className="supporter-names"
+                role="list"
+                aria-label="공개에 동의한 참여자"
+              >
+                {names.map((name, index) => (
+                  <li key={index}>{name}</li>
+                ))}
+              </ul>
+            </>
           ) : hasFunding ? (
             <p className="supporter-empty">
               아직 공개된 참여자 이름이 없습니다.
