@@ -81,7 +81,9 @@ export function HistoryPanel({ state }: { state: FundingState }) {
                 aria-label="공개에 동의한 참여자"
               >
                 {names.map((name, index) => (
-                  <li key={index}>{name}</li>
+                  <li key={index}>
+                    <span>{name}</span>
+                  </li>
                 ))}
               </ul>
             </>
