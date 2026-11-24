@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { ArrowDown, ArrowUpRight, Leaf, Sparkles, Sun } from "lucide-react";
+import { projectTabHref } from "../project-tabs";
 import { FUNDING_TARGET, type FundingState } from "./funding-data";
 import { FundingStatus } from "./funding-status";
 const number = new Intl.NumberFormat("ko-KR");
@@ -93,7 +94,7 @@ export function ProjectHero({
             : "확인된 모금 현황을 불러옵니다."}
         </p>
         <p>모금기간 2026.11.23 — 2026.12.06</p>
-        <a className="mk-button" href="#donate">
+        <a className="mk-button" href={projectTabHref("donate")}>
           기부하기 <ArrowUpRight size={18} />
         </a>
         <FundingStatus state={state} />

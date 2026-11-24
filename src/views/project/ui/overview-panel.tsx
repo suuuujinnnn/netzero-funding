@@ -1,7 +1,10 @@
 import Image from "next/image";
+import { projectTabHref } from "../project-tabs";
 import "./overview-extra.css";
 
-export function OverviewPanel({ planHref }: { planHref?: string } = {}) {
+export function OverviewPanel({
+  planHref = projectTabHref("plan"),
+}: { planHref?: string } = {}) {
   return (
     <>
       <div className="panel-heading">
@@ -282,15 +285,9 @@ export function OverviewPanel({ planHref }: { planHref?: string } = {}) {
       </details>
       <div className="panel-bottom">
         <span>다음으로 살펴보기</span>
-        {planHref ? (
-          <a className="next-panel" href={planHref}>
-            사용계획 보기 <span aria-hidden="true">→</span>
-          </a>
-        ) : (
-          <button type="button" className="next-panel" data-project-tab="plan">
-            사용계획 보기 <span aria-hidden="true">→</span>
-          </button>
-        )}
+        <a className="next-panel" href={planHref}>
+          사용계획 보기 <span aria-hidden="true">→</span>
+        </a>
       </div>
     </>
   );

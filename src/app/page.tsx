@@ -1,5 +1,6 @@
-import { ProjectView } from "@/views/project";
+import { parseProjectTab, ProjectView } from "@/views/project";
 
-export default function HomePage() {
-  return <ProjectView />;
+export default async function HomePage({ searchParams }: PageProps<"/">) {
+  const { tab } = await searchParams;
+  return <ProjectView initialTab={parseProjectTab(tab) ?? "home"} />;
 }

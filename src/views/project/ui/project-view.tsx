@@ -7,17 +7,19 @@ import { PartnersPanel } from "./partners-panel";
 import { DonatePanel } from "./donate-panel";
 import { ProjectHome } from "./project-home";
 import { EffectsContent } from "./effects/effects-content";
+import type { ProjectTab } from "../project-tabs";
 import "./project.css";
 import "./production.css";
 import "./mobile.css";
 
-export function ProjectView() {
+export function ProjectView({ initialTab }: { initialTab: ProjectTab }) {
   return (
     <div className="project-page production-site">
       <a className="skip-link" href="#main">
         본문 바로가기
       </a>
       <LiveProject
+        initialTab={initialTab}
         header={
           <div className="header-inner production-logo-group">
             <Link

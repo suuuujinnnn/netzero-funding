@@ -6,6 +6,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import { projectTabHref } from "../project-tabs";
 
 export function ProjectHome() {
   return (
@@ -76,7 +77,7 @@ export function ProjectHome() {
                 <span aria-hidden="true">→</span>
                 <strong>801호 연간 전력량 산정</strong>
               </div>
-              <a href="#plan">
+              <a href={projectTabHref("plan")}>
                 산정과 사용계획 자세히 보기 <ArrowUpRight size={16} />
               </a>
             </div>
@@ -127,7 +128,7 @@ export function ProjectHome() {
                 달성된 성과가 아닌 프로젝트의 목표입니다. 목표금액 미달 시 모금
                 규모에 맞게 사업계획을 조정합니다.
               </p>
-              <a href="#overview">
+              <a href={projectTabHref("overview")}>
                 프로젝트 배경과 REC 알아보기 <ArrowUpRight size={16} />
               </a>
             </div>
@@ -137,7 +138,7 @@ export function ProjectHome() {
       </section>
       <section className="explain-end mk-wrap">
         <p>학생의 선택으로 시작하는 캠퍼스 에너지 전환</p>
-        <a className="mk-button" href="#donate">
+        <a className="mk-button" href={projectTabHref("donate")}>
           참여 방법 확인하기 <ArrowUpRight size={18} />
         </a>
       </section>

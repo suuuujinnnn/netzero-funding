@@ -1,5 +1,8 @@
 import { CopyAccount } from "@/features/copy-account";
-export function DonatePanel({ planHref }: { planHref?: string } = {}) {
+import { projectTabHref } from "../project-tabs";
+export function DonatePanel({
+  planHref = projectTabHref("plan"),
+}: { planHref?: string } = {}) {
   return (
     <>
       <div className="panel-heading">
@@ -75,19 +78,9 @@ export function DonatePanel({ planHref }: { planHref?: string } = {}) {
             입금 후 구글 폼에 입금자명과 참여 내역을 정확히 제출해 주세요.
             운영팀의 확인 후 공개에 동의한 내역을 반영합니다.
           </p>
-          {planHref ? (
-            <a className="next-panel aside-back" href={planHref}>
-              사용계획 다시 보기 <span aria-hidden="true">→</span>
-            </a>
-          ) : (
-            <button
-              type="button"
-              className="next-panel aside-back"
-              data-project-tab="plan"
-            >
-              사용계획 다시 보기 <span aria-hidden="true">→</span>
-            </button>
-          )}
+          <a className="next-panel aside-back" href={planHref}>
+            사용계획 다시 보기 <span aria-hidden="true">→</span>
+          </a>
         </aside>
       </div>
     </>

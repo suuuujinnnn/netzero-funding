@@ -5,13 +5,16 @@ import { ProjectHero } from "./project-hero";
 import type { FundingState } from "./funding-data";
 import { HistoryPanel } from "./history-panel";
 import { INITIAL_FUNDING, loadFunding } from "./funding-data";
+import type { ProjectTab } from "../project-tabs";
 
 export function LiveProject({
+  initialTab,
   heroImage,
   header,
   homeContent,
   panels,
 }: {
+  initialTab: ProjectTab;
   heroImage: ReactNode;
   header: ReactNode;
   homeContent: ReactNode;
@@ -66,6 +69,7 @@ export function LiveProject({
   }, []);
   return (
     <ProjectNavigation
+      initialTab={initialTab}
       header={header}
       home={
         <>

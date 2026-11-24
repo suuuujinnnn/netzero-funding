@@ -1,22 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-
-const pages = [
-  ["home", "홈"],
-  ["overview", "모금 소개"],
-  ["effects", "기대효과"],
-  ["plan", "사용계획"],
-  ["partners", "관련단체"],
-  ["history", "명예의 전당"],
-  ["donate", "기부하기"],
-] as const;
-type PageId = (typeof pages)[number][0];
-type PanelId = Exclude<PageId, "home">;
-
-function readPage(): PageId {
-  return pages.find(([id]) => `#${id}` === window.location.hash)?.[0] ?? "home";
-}
+import {
+  parseProjectTab,
+  projectTabHref,
+  projectTabs,
+  type ProjectTab,
+} from "../project-tabs";
 
 function revealMenuLink(link: HTMLAnchorElement | null | undefined) {
   const menu = link?.parentElement;
@@ -31,19 +21,31 @@ function revealMenuLink(link: HTMLAnchorElement | null | undefined) {
 }
 
 export function ProjectNavigation({
+  initialTab,
   header,
   home,
   panels,
 }: {
+  initialTab: ProjectTab;
   header: ReactNode;
   home: ReactNode;
-  panels: Record<PanelId, ReactNode>;
+  panels: Record<Exclude<ProjectTab, "home">, ReactNode>;
 }) {
-  const [active, setActive] = useState<PageId>("home");
+  const [active, setActive] = useState(initialTab);
   const links = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
-    const restore = () => setActive(readPage());
+    const restore = () => {
+      const url = new URL(window.location.href);
+      const legacyTab = parseProjectTab(url.hash.slice(1));
+      if (legacyTab && !url.searchParams.has("tab")) {
+        if (legacyTab !== "home") url.searchParams.set("tab", legacyTab);
+        url.hash = "";
+        window.history.replaceState(null, "", url);
+      }
+      const [tab, ...duplicates] = url.searchParams.getAll("tab");
+      setActive((duplicates.length === 0 && parseProjectTab(tab)) || "home");
+    };
     restore();
     window.addEventListener("hashchange", restore);
     window.addEventListener("popstate", restore);
@@ -54,13 +56,15 @@ export function ProjectNavigation({
   }, []);
 
   useEffect(() => {
-    revealMenuLink(links.current[pages.findIndex(([id]) => id === active)]);
+    revealMenuLink(
+      links.current[projectTabs.findIndex(([id]) => id === active)],
+    );
   }, [active]);
 
-  function select(id: PageId) {
+  function select(id: ProjectTab, url: URL) {
     setActive(id);
-    if (window.location.hash !== `#${id}`)
-      window.history.pushState(null, "", `#${id}`);
+    if (window.location.href !== url.href)
+      window.history.pushState(null, "", url);
     requestAnimationFrame(() => {
       document.getElementById("main")?.focus({ preventScroll: true });
       window.scrollTo({ top: 0, behavior: "instant" });
@@ -80,61 +84,49 @@ export function ProjectNavigation({
           event.altKey
         )
           return;
-        const button = event.target.closest("button[data-project-tab]");
         const link = event.target.closest("a");
-        let id: PageId | undefined;
-        if (button)
-          id = pages.find(
-            ([key]) => key === button.getAttribute("data-project-tab"),
-          )?.[0];
-        else if (
-          link &&
-          !link.closest(".b-site-menu") &&
-          !link.hasAttribute("target") &&
-          !link.hasAttribute("download")
-        ) {
-          const url = new URL(link.href);
-          if (url.origin !== window.location.origin || url.pathname !== "/")
-            return;
-          if (!url.hash) id = "home";
-          else id = pages.find(([key]) => `#${key}` === url.hash)?.[0];
-        }
+        if (
+          !link ||
+          link.hasAttribute("target") ||
+          link.hasAttribute("download")
+        )
+          return;
+        const url = new URL(link.href);
+        if (
+          url.origin !== window.location.origin ||
+          url.pathname !== "/" ||
+          url.hash
+        )
+          return;
+        const id = url.search
+          ? parseProjectTab(url.searchParams.get("tab"))
+          : "home";
         if (!id) return;
         event.preventDefault();
-        select(id);
+        select(id, url);
       }}
     >
       <header className="b-topbar">
         <div className="b-topbar-inner mk-wrap">
           {header}
           <nav className="b-site-menu" aria-label="프로젝트 메뉴">
-            {pages.map(([id, label], index) => (
+            {projectTabs.map(([id, label], index) => (
               <a
                 key={id}
                 ref={(node) => {
                   links.current[index] = node;
                 }}
-                href={`#${id}`}
+                href={projectTabHref(id)}
                 aria-current={active === id ? "page" : undefined}
-                onClick={(event) => {
-                  if (
-                    event.ctrlKey ||
-                    event.metaKey ||
-                    event.shiftKey ||
-                    event.altKey
-                  )
-                    return;
-                  event.preventDefault();
-                  select(id);
-                }}
                 onKeyDown={(event) => {
                   let next: number;
                   if (event.key === "ArrowRight")
-                    next = (index + 1) % pages.length;
+                    next = (index + 1) % projectTabs.length;
                   else if (event.key === "ArrowLeft")
-                    next = (index - 1 + pages.length) % pages.length;
+                    next =
+                      (index - 1 + projectTabs.length) % projectTabs.length;
                   else if (event.key === "Home") next = 0;
-                  else if (event.key === "End") next = pages.length - 1;
+                  else if (event.key === "End") next = projectTabs.length - 1;
                   else return;
                   event.preventDefault();
                   links.current[next]?.focus({ preventScroll: true });
@@ -164,7 +156,7 @@ export function ProjectNavigation({
           </section>
         )}
         <noscript>
-          <p>메뉴 전환과 모금 집계를 확인하려면 JavaScript를 켜 주세요.</p>
+          <p>모금 집계를 확인하려면 JavaScript를 켜 주세요.</p>
         </noscript>
       </main>
     </div>
