@@ -1,9 +1,17 @@
 import { FundingPuzzle } from "./funding-puzzle";
-import { filledPieces } from "./funding-data";
+import { FUNDING_TARGET } from "./funding-data";
 import { FundingStatus } from "./funding-status";
 import type { FundingState } from "./funding-data";
+
+const fundingPercent = new Intl.NumberFormat("ko-KR", {
+  style: "percent",
+  maximumFractionDigits: 1,
+  roundingMode: "trunc",
+});
+
 export function HistoryPanel({ state }: { state: FundingState }) {
   const data = state.data;
+  const hasFunding = data !== null && state.status !== "unconfigured";
   return (
     <>
       <div className="panel-heading">
@@ -13,29 +21,23 @@ export function HistoryPanel({ state }: { state: FundingState }) {
       </div>
       <div className="history-layout">
         <div className="puzzle-card">
-          <div className="puzzle-heading">
-            <span>HALL OF ENERGY</span>
-            <strong>{data ? filledPieces(data.amount) : "—"} / 24 조각</strong>
-          </div>
           <h2>
             한 조각씩 채워지는
             <br />첫 번째 교실
           </h2>
-          <FundingPuzzle amount={data?.amount ?? null} />
-          <p>
-            퍼즐 한 조각은 목표 모금액의 1/24을 나타냅니다. 입금 확인 완료된
-            금액에 따라 채워지며 참여 인원과는 별개입니다.
-          </p>
+          <div className="puzzle-figure">
+            <FundingPuzzle amount={hasFunding ? data.amount : null} />
+            <div className="puzzle-progress">
+              <span>모금 달성률</span>
+              <strong>
+                {hasFunding
+                  ? fundingPercent.format(data.amount / FUNDING_TARGET)
+                  : "—"}
+              </strong>
+            </div>
+          </div>
         </div>
         <div className="history-detail">
-          <div className="history-total">
-            <span>확인 완료된 참여</span>
-            <strong>
-              {data
-                ? new Intl.NumberFormat("ko-KR").format(data.count) + "건"
-                : "집계 확인 중"}
-            </strong>
-          </div>
           <h2 className="supporter-heading">함께한 이름</h2>
           {data?.names.length ? (
             <ul className="supporter-names" aria-label="공개에 동의한 참여자">
@@ -43,14 +45,18 @@ export function HistoryPanel({ state }: { state: FundingState }) {
                 <li key={index}>{name}</li>
               ))}
             </ul>
-          ) : (
+          ) : hasFunding ? (
             <p className="supporter-empty">
-              {data
-                ? "아직 공개된 참여자 이름이 없습니다."
-                : "참여자 목록을 확인하고 있습니다."}
+              아직 공개된 참여자 이름이 없습니다.
             </p>
-          )}
-          <FundingStatus state={state} />
+          ) : null}
+          {state.status === "unconfigured" ? (
+            <p className="supporter-empty" role="status">
+              모금 집계 연결을 기다리고 있습니다.
+            </p>
+          ) : state.status !== "ready" ? (
+            <FundingStatus state={state} />
+          ) : null}
         </div>
       </div>
       <p className="history-privacy">

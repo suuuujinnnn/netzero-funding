@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { filledPieces } from "./funding-data";
 const pieces = [
   {
@@ -120,7 +121,13 @@ export function FundingPuzzle({
           >
             <path
               d={piece.path}
-              fill={index < filled ? "none" : "#31584b"}
+              fill="#31584b"
+              fillOpacity={index < filled ? 0 : 1}
+              style={
+                index < filled
+                  ? ({ "--reveal-delay": `${index * 28}ms` } as CSSProperties)
+                  : undefined
+              }
               stroke={index < filled ? "#234a3c" : "#a1c2a0"}
               strokeWidth={5}
               strokeLinejoin="round"

@@ -893,24 +893,34 @@
 .puzzle-card {
   min-width: 0;
 }
-.puzzle-heading {
+.puzzle-figure {
+  position: relative;
+  max-width: 540px;
+  margin: 12px auto;
+}
+.puzzle-progress {
+  position: absolute;
+  top: 0;
+  right: 5%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 850;
-  letter-spacing: 0.08em;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #e4f3c4;
+  color: #234a3c;
+  box-shadow: 0 2px 8px #234a3c33;
 }
-.puzzle-heading strong {
-  color: var(--green);
-  font-size: 14px;
-  letter-spacing: 0;
-  white-space: nowrap;
+.puzzle-progress span {
+  font-size: 11px;
+  font-weight: 700;
+}
+.puzzle-progress strong {
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
 }
 .puzzle-card h2 {
-  margin: 17px 0 11px;
+  margin: 0;
   color: var(--ink);
   font-size: 24px;
   line-height: 1.35;
@@ -921,7 +931,7 @@
   width: 100%;
   max-width: 540px;
   height: auto;
-  margin: 12px auto;
+  margin: 0;
   overflow: visible;
 }
 .puzzle-piece path {
@@ -930,26 +940,22 @@
 .puzzle-piece.is-filled:hover path {
   filter: brightness(1.08);
 }
-.puzzle-card > p {
-  margin: 13px 0 0;
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.65;
+@media (prefers-reduced-motion: no-preference) {
+  .puzzle-piece.is-filled path {
+    animation: puzzle-photo-reveal 620ms ease-out
+      calc(150ms + var(--reveal-delay)) backwards;
+  }
+}
+@keyframes puzzle-photo-reveal {
+  from {
+    fill-opacity: 1;
+  }
+  to {
+    fill-opacity: 0;
+  }
 }
 .history-detail {
   min-width: 0;
-}
-.history-detail .history-total {
-  display: grid;
-  justify-content: stretch;
-  gap: 5px;
-  margin-top: 0;
-}
-.history-detail .history-total strong {
-  white-space: normal;
-}
-.history-detail .history-total small {
-  max-width: none;
 }
 .history-detail .history-list {
   margin-top: 14px;
@@ -1505,7 +1511,7 @@
   color: var(--muted);
 }
 .supporter-heading {
-  margin: 24px 0 12px;
+  margin: 0 0 12px;
   font-size: 18px;
 }
 .supporter-names {
