@@ -26,18 +26,36 @@ export function HistoryPanel({ state }: { state: FundingState }) {
       return;
     }
 
+    const nameplates = Array.from(list.querySelectorAll("li"));
+    let nextStart = 0;
     const observer = new IntersectionObserver((entries) => {
-      for (const { isIntersecting, target } of entries) {
-        if (!isIntersecting) continue;
-        target.classList.add("supporter-name-entered");
-        observer.unobserve(target);
-      }
+      const now = performance.now();
+      const visible = new Set(
+        entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target),
+      );
+
+      nameplates
+        .filter((nameplate) => visible.has(nameplate))
+        .forEach((nameplate) => {
+          const delay = Math.max(0, nextStart - now);
+          nextStart = now + delay + 110;
+          nameplate.style.setProperty("--supporter-enter-delay", `${delay}ms`);
+          nameplate.classList.replace(
+            "supporter-name-pending",
+            "supporter-name-entered",
+          );
+          observer.unobserve(nameplate);
+        });
     });
 
-    for (const nameplate of list.children) {
-      if (!nameplate.classList.contains("supporter-name-entered")) {
-        observer.observe(nameplate);
+    for (const nameplate of nameplates) {
+      if (nameplate.classList.contains("supporter-name-entered")) {
+        continue;
       }
+      nameplate.classList.add("supporter-name-pending");
+      observer.observe(nameplate);
     }
 
     return () => observer.disconnect();

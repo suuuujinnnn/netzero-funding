@@ -1558,14 +1558,18 @@
   }
 }
 @media (prefers-reduced-motion: no-preference) {
+  .supporter-name-pending {
+    opacity: 0;
+  }
   .supporter-name-entered {
-    animation: supporter-name-enter 250ms ease-out;
+    animation: supporter-name-enter 420ms cubic-bezier(0.22, 1, 0.36, 1)
+      var(--supporter-enter-delay) backwards;
   }
 }
 @keyframes supporter-name-enter {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(22px);
   }
 }
 .supporter-empty {
