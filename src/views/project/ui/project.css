@@ -1538,10 +1538,26 @@
   max-width: 240px;
   min-height: 56px;
   padding: 8px 10px;
-  border: 1px solid #ddc8a7;
   border-radius: 4px;
-  background: #fbf8f0;
-  color: var(--green);
+  background:
+    linear-gradient(
+      155deg,
+      transparent 58%,
+      rgb(111 74 25 / 10%) 60% 62%,
+      transparent 64% 73%,
+      rgb(111 74 25 / 12%) 75% 77%,
+      transparent 79%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 80%,
+      rgb(111 74 25 / 9%) 81% 82%,
+      transparent 83%
+    ),
+    radial-gradient(ellipse at 82% 0%, #fff3ce 4%, transparent 68%),
+    linear-gradient(115deg, #d7b67e, #f0d7a6 44%, #e3c18a);
+  box-shadow: 0 2px 5px rgb(67 46 23 / 18%);
+  color: #3c2818;
   font-size: 15px;
   font-weight: 700;
   text-align: center;
