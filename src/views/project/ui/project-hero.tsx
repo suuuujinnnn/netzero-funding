@@ -60,7 +60,7 @@ export function ProjectHero({
           <Sparkles size={17} /> MAKE IT HAPPEN
         </p>
         <h2>
-          확인 완료된 모금액
+          누적 모금액
           <strong>
             {state.data ? number.format(state.data.amount) : "집계 확인 중"}
             {state.data && <span>원</span>}
