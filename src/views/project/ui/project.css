@@ -1521,7 +1521,7 @@
 }
 .supporter-names {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 240px));
   align-items: start;
   gap: 10px;
   margin: 0;
@@ -1552,9 +1552,22 @@
 .supporter-names li span {
   grid-column: 2;
 }
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .supporter-names {
-    grid-template-columns: repeat(2, minmax(0, 240px));
+    justify-content: center;
+    gap: 8px;
+  }
+  .supporter-names li {
+    grid-template-columns: 23% minmax(0, 1fr) 23%;
+    aspect-ratio: 3.2;
+    background-size: auto 100%;
+    font-family: system-ui, sans-serif;
+    font-size: clamp(14px, 4vw, 18px);
+  }
+  .supporter-names li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 4px);
   }
 }
 @media (prefers-reduced-motion: no-preference) {
