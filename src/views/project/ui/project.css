@@ -1519,9 +1519,16 @@
   color: var(--muted);
   font-size: 14px;
 }
+@font-face {
+  font-family: "Supporter Noto Serif KR";
+  src: url("/assets/NotoSerifKR-ExtraBold.woff") format("woff");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
 .supporter-names {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 240px));
+  grid-template-columns: repeat(2, minmax(0, 190px));
   align-items: start;
   gap: 10px;
   margin: 0;
@@ -1530,18 +1537,19 @@
 }
 .supporter-names li {
   display: grid;
-  grid-template-columns: 32% minmax(0, 1fr) 32%;
+  grid-template-columns: 23% minmax(0, 1fr) 23%;
   align-items: center;
   box-sizing: border-box;
   width: 100%;
-  max-width: 240px;
-  aspect-ratio: 720 / 170;
+  max-width: 190px;
+  aspect-ratio: 3.2;
   padding-block: 6px;
-  background: #e9cf99 url("/assets/supporter-nameplate.webp") center / 100% 100%
+  background: #e9cf99 url("/assets/supporter-nameplate.webp") center / auto 100%
     no-repeat;
   box-shadow: 0 2px 5px rgb(67 46 23 / 18%);
   color: #321d0d;
-  font-family: "Noto Serif KR", Batang, "AppleMyungjo", serif;
+  font-family:
+    "Supporter Noto Serif KR", "Noto Serif KR", Batang, "AppleMyungjo", serif;
   font-size: 19px;
   font-weight: 800;
   line-height: 1.15;
@@ -1558,10 +1566,6 @@
     gap: 8px;
   }
   .supporter-names li {
-    grid-template-columns: 23% minmax(0, 1fr) 23%;
-    aspect-ratio: 3.2;
-    background-size: auto 100%;
-    font-family: system-ui, sans-serif;
     font-size: clamp(14px, 4vw, 18px);
   }
   .supporter-names li:last-child:nth-child(odd) {
