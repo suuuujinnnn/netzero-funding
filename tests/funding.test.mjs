@@ -7,10 +7,10 @@ import {
   loadFunding,
 } from "../src/views/project/ui/funding-data.ts";
 import {
-  fundingConfig,
   fundingResponse,
+  publishFunding,
 } from "../src/views/project/api/private-funding.ts";
-test("published script exposes only validated aggregate values", () => {
+test("publisher reads only validated aggregate values", () => {
   const code = readFileSync(
     new URL("../apps-script/Code.gs", import.meta.url),
     "utf8",
@@ -32,13 +32,9 @@ test("published script exposes only validated aggregate values", () => {
           },
         }),
       },
-      ContentService: {
-        MimeType: { JSON: "json" },
-        createTextOutput: (text) => ({ setMimeType: () => text }),
-      },
     };
     runInNewContext(code, context);
-    return JSON.parse(context.doGet());
+    return JSON.parse(JSON.stringify(context.readFunding_()));
   };
   const header = ["확인금액", "확인건수", "이름"];
   assert.deepEqual(run([header, [1000, 2, "가"], ["", "", "가"]]), {
@@ -55,9 +51,14 @@ test("published script exposes only validated aggregate values", () => {
       [0, 0, ""],
     ],
   ])
-    assert.deepEqual(run(rows), { status: "error" });
+    assert.throws(() => run(rows));
 });
 test("puzzle boundaries", () => {
+  for (let piece = 1; piece <= 24; piece++) {
+    const threshold = Math.ceil((piece * 500000) / 24);
+    assert.equal(filledPieces(threshold - 1), piece - 1);
+    assert.equal(filledPieces(threshold), piece);
+  }
   for (const [a, n] of [
     [0, 0],
     [20833, 0],
@@ -69,64 +70,65 @@ test("puzzle boundaries", () => {
   ])
     assert.equal(filledPieces(a), n);
 });
-test("Apps Script configuration rejects unsafe URLs", () => {
-  assert.equal(fundingConfig({}), null);
-  for (const url of [
-    "http://script.google.com/macros/s/id/exec",
-    "https://example.com/macros/s/id/exec",
-    "https://script.google.com/macros/s/id/dev",
-    "https://script.google.com/macros/s/id/exec?x=1",
-  ])
-    assert.throws(() => fundingConfig({ FUNDING_APPS_SCRIPT_URL: url }));
-});
-test("server validates redirects, response data, caches and masks failures", async (t) => {
+test("only authenticated, valid updates replace the last saved snapshot", async () => {
   const env = {
-    FUNDING_APPS_SCRIPT_URL: "https://script.google.com/macros/s/test/exec",
+    BLOB_READ_WRITE_TOKEN: "blob-token",
+    FUNDING_SYNC_SECRET: "sync-secret",
   };
-  let mode = "badRedirect",
-    calls = 0;
-  t.mock.method(globalThis, "fetch", async (url, init) => {
-    calls++;
-    if (String(url).includes("script.google.com"))
-      return new Response(null, {
-        status: 302,
-        headers: {
-          location:
-            mode === "badRedirect"
-              ? "https://example.com/"
-              : "https://script.googleusercontent.com/macros/echo?token=test",
-        },
-      });
-    assert.equal(init.redirect, "error");
-    return Response.json(
-      mode === "badData"
-        ? { amount: 1, count: 0, names: [], email: "private" }
-        : { amount: 33334, count: 1, names: ["가"] },
+  const data = { amount: 33334, count: 1, names: ["가"] };
+  let saved;
+  let failWrite = false;
+  const write = async (pathname, body, options) => {
+    assert.equal(pathname, "funding/current.json");
+    assert.equal(options.access, "private");
+    assert.equal(options.allowOverwrite, true);
+    assert.equal(options.token, env.BLOB_READ_WRITE_TOKEN);
+    if (failWrite) throw new Error("storage unavailable");
+    saved = body;
+  };
+  const read = async (pathname, options) => {
+    assert.equal(pathname, "funding/current.json");
+    assert.equal(options.access, "private");
+    assert.equal(options.useCache, false);
+    return saved ? { stream: new Response(saved).body } : null;
+  };
+  const publish = (body, key = "sync-secret") =>
+    publishFunding(
+      new Request("https://example.com/api/funding", {
+        method: "POST",
+        headers: { authorization: `Bearer ${key}` },
+        body: JSON.stringify(body),
+      }),
+      env,
+      write,
     );
-  });
-  assert.deepEqual(await (await fundingResponse({})).json(), {
+
+  assert.deepEqual(await (await fundingResponse({}, read)).json(), {
     status: "unconfigured",
   });
-  for (mode of ["badRedirect", "badData"]) {
-    const response = await fundingResponse(env);
-    assert.equal(response.status, 503);
-    assert.deepEqual(await response.json(), { status: "error" });
-  }
-  mode = "ok";
-  const results = await Promise.all([
-    fundingResponse(env),
-    fundingResponse(env),
-  ]);
-  for (const response of results) {
-    const value = await response.json();
-    assert.deepEqual(value.data, { amount: 33334, count: 1, names: ["가"] });
-    assert.equal(value.status, "ready");
-    assert(Number.isFinite(Date.parse(value.checkedAt)));
-  }
-  const previous = calls;
-  await fundingResponse(env);
-  assert.equal(calls, previous);
+  assert.equal((await fundingResponse(env, read)).status, 503);
+  assert.equal((await publish(data, "wrong-secret")).status, 401);
+  assert.equal((await publish({ ...data, email: "private" })).status, 400);
+  assert.equal(saved, undefined);
+
+  assert.equal((await publish(data)).status, 204);
+  const first = await (await fundingResponse(env, read)).json();
+  assert.equal(first.status, "ready");
+  assert.deepEqual(first.data, data);
+  assert(Number.isFinite(Date.parse(first.checkedAt)));
+
+  const correction = { amount: 0, count: 0, names: [] };
+  failWrite = true;
+  assert.equal((await publish(correction)).status, 503);
+  assert.deepEqual(await (await fundingResponse(env, read)).json(), first);
+  failWrite = false;
+  assert.equal((await publish(correction)).status, 204);
+  assert.deepEqual(
+    (await (await fundingResponse(env, read)).json()).data,
+    correction,
+  );
 });
+
 test("browser uses same-origin endpoint and fails closed on errors", async (t) => {
   let mode = "ok";
   t.mock.method(globalThis, "fetch", async (url, init) => {

@@ -4,7 +4,7 @@ import { ProjectNavigation } from "./project-navigation";
 import { ProjectHero } from "./project-hero";
 import type { FundingState } from "./funding-data";
 import { HistoryPanel } from "./history-panel";
-import { INITIAL_FUNDING, loadFunding } from "./funding-data";
+import { loadFunding } from "./funding-data";
 import type { ProjectTab } from "../project-tabs";
 
 export function LiveProject({
@@ -48,7 +48,7 @@ export function LiveProject({
               : previous.checkedAt
                 ? { ...previous, status: "error" }
                 : {
-                    data: INITIAL_FUNDING,
+                    data: null,
                     status: "unconfigured",
                     checkedAt: null,
                   },
@@ -62,7 +62,16 @@ export function LiveProject({
       }
     };
     void refresh();
+    const poll = window.setInterval(() => {
+      if (document.visibilityState === "visible") void refresh();
+    }, 60000);
+    const refreshWhenVisible = () => {
+      if (document.visibilityState === "visible") void refresh();
+    };
+    document.addEventListener("visibilitychange", refreshWhenVisible);
     return () => {
+      window.clearInterval(poll);
+      document.removeEventListener("visibilitychange", refreshWhenVisible);
       disposed = true;
       active?.abort();
     };

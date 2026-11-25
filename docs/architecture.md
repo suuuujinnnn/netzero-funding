@@ -7,11 +7,11 @@ Next.js App Router·React·strict TypeScript·Tailwind CSS v4로 구성합니다
 | `src/app/`                      | `/` 페이지·layout·전역 CSS·`GET /api/funding` |
 | `src/views/project/ui/`         | 운영 홈·여섯 상세 메뉴·집계 표시·순차 등장    |
 | `src/views/project/ui/effects/` | 기대효과 카드·비교 인터랙션·환산 자료         |
-| `src/views/project/api/`        | 비공개 Google Sheets 조회                     |
+| `src/views/project/api/`        | 비공개 Blob 집계 읽기·저장                    |
 | `src/features/copy-account/`    | 계좌 복사                                     |
 | `src/shared/lib/`               | 도메인에 독립적인 유틸리티                    |
 
-`project-view.tsx`가 화면을 구성하고, `live-project.tsx`는 페이지 진입 시 집계 조회를 관리합니다. `project-navigation.tsx`가 홈과 `#overview`·`#effects`·`#plan`·`#partners`·`#history`·`#donate`를 전환하며 URL 복원과 키보드 조작을 지원합니다.
+`project-view.tsx`가 화면을 구성하고, `live-project.tsx`는 페이지 진입과 재방문 중 집계 조회를 관리합니다. `project-navigation.tsx`가 홈과 `#overview`·`#effects`·`#plan`·`#partners`·`#history`·`#donate`를 전환하며 URL 복원과 키보드 조작을 지원합니다.
 
 기대효과의 정적 본문은 서버 컴포넌트, 카드 배치 비교와 캐러셀은 클라이언트 컴포넌트입니다. 금액별 데이터는 한곳에서 공유합니다. 순차 등장은 메뉴 내부의 콘텐츠만 대상으로 하고 부모와 자식의 중첩 애니메이션을 배제합니다. 교실 부유와 카드 전환은 자체 동작을 유지합니다.
 

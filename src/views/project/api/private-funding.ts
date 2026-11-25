@@ -1,105 +1,82 @@
-import { validateFunding } from "../ui/funding-data.ts";
+import { timingSafeEqual } from "node:crypto";
+import { get, put } from "@vercel/blob";
+import { validateFunding, type FundingData } from "../ui/funding-data.ts";
 
-type Config = { url: string };
-export function fundingConfig(env: NodeJS.ProcessEnv): Config | null {
-  const raw = env.FUNDING_APPS_SCRIPT_URL?.trim();
-  if (!raw) return null;
-  let url: URL;
-  try {
-    url = new URL(raw);
-  } catch {
-    throw new Error("서버 설정 오류");
-  }
-  if (
-    url.protocol !== "https:" ||
-    url.hostname !== "script.google.com" ||
-    url.port ||
-    url.username ||
-    url.password ||
-    url.search ||
-    url.hash ||
-    !/^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(url.pathname)
-  )
-    throw new Error("서버 설정 오류");
-  return { url: url.toString() };
-}
-export async function queryPrivateFunding(config: Config, signal: AbortSignal) {
-  const first = await fetch(config.url, {
-    signal,
-    cache: "no-store",
-    redirect: "manual",
-  });
-  if (first.status !== 302) throw new Error("집계 요청 실패");
-  const location = first.headers.get("location");
-  if (!location) throw new Error("집계 응답 오류");
-  const redirect = new URL(location);
-  if (
-    redirect.protocol !== "https:" ||
-    redirect.hostname !== "script.googleusercontent.com" ||
-    redirect.port ||
-    redirect.username ||
-    redirect.password
-  )
-    throw new Error("집계 응답 오류");
-  const response = await fetch(redirect, {
-    signal,
-    cache: "no-store",
-    redirect: "error",
-  });
-  if (!response.ok) throw new Error("집계 요청 실패");
-  const body = await response.text();
-  if (body.length > 1000000) throw new Error("응답 크기 오류");
-  return validateFunding(JSON.parse(body));
-}
-let cache: {
-  data: ReturnType<typeof validateFunding>;
-  checkedAt: string;
-  expires: number;
-  url: string;
-} | null = null;
-let pending: Promise<Response> | null = null;
+const pathname = "funding/current.json";
+const maxBodySize = 512 * 1024;
 const headers = {
   "Cache-Control": "no-store",
   "X-Content-Type-Options": "nosniff",
 };
-export async function fundingResponse(
-  env: NodeJS.ProcessEnv = process.env,
-): Promise<Response> {
-  let config: Config | null;
+
+export async function fundingResponse(env = process.env, read = get) {
+  const token = env.BLOB_READ_WRITE_TOKEN;
+  if (!token) return Response.json({ status: "unconfigured" }, { headers });
+
   try {
-    config = fundingConfig(env);
+    const result = await read(pathname, {
+      access: "private",
+      token,
+      useCache: false,
+      abortSignal: AbortSignal.timeout(5000),
+    });
+    if (!result?.stream) throw new Error("집계 파일 없음");
+    const snapshot = await new Response(result.stream).json();
+    if (
+      typeof snapshot?.checkedAt !== "string" ||
+      !Number.isFinite(Date.parse(snapshot.checkedAt))
+    )
+      throw new Error("집계 확인 시각 오류");
+    return Response.json(
+      {
+        status: "ready",
+        data: validateFunding(snapshot.data),
+        checkedAt: snapshot.checkedAt,
+      },
+      { headers },
+    );
   } catch {
     return Response.json({ status: "error" }, { status: 503, headers });
   }
-  if (!config) return Response.json({ status: "unconfigured" }, { headers });
-  if (cache && cache.url === config.url && Date.now() < cache.expires)
-    return Response.json(
-      { status: "ready", data: cache.data, checkedAt: cache.checkedAt },
-      { headers },
-    );
-  if (pending) return (await pending).clone();
-  pending = (async () => {
-    try {
-      const data = await queryPrivateFunding(
-        config,
-        AbortSignal.timeout(10000),
-      );
-      const checkedAt = new Date().toISOString();
-      cache = {
-        data,
-        checkedAt,
-        expires: Date.now() + 60000,
-        url: config.url,
-      };
-      return Response.json({ status: "ready", data, checkedAt }, { headers });
-    } catch {
-      // Never expose upstream errors, original donor rows.
-      return Response.json({ status: "error" }, { status: 503, headers });
-    }
-  })();
+}
+
+export async function publishFunding(
+  request: Request,
+  env = process.env,
+  write = put,
+) {
+  const token = env.BLOB_READ_WRITE_TOKEN;
+  const secret = env.FUNDING_SYNC_SECRET;
+  if (!token || !secret)
+    return Response.json({ status: "unconfigured" }, { status: 503, headers });
+
+  const actual = Buffer.from(request.headers.get("authorization") ?? "");
+  const expected = Buffer.from(`Bearer ${secret}`);
+  if (actual.length !== expected.length || !timingSafeEqual(actual, expected))
+    return Response.json({ status: "error" }, { status: 401, headers });
+
+  let data: FundingData;
   try {
-    return (await pending).clone();
-  } finally {
-    pending = null;
+    const body = await request.text();
+    if (Buffer.byteLength(body) > maxBodySize)
+      return Response.json({ status: "error" }, { status: 413, headers });
+    data = validateFunding(JSON.parse(body));
+    if (data.names.length > 1000) throw new Error("공개 명단 크기 오류");
+  } catch {
+    return Response.json({ status: "error" }, { status: 400, headers });
+  }
+
+  try {
+    const checkedAt = new Date().toISOString();
+    await write(pathname, JSON.stringify({ data, checkedAt }), {
+      access: "private",
+      token,
+      allowOverwrite: true,
+      contentType: "application/json",
+      abortSignal: AbortSignal.timeout(10000),
+    });
+    return new Response(null, { status: 204, headers });
+  } catch {
+    return Response.json({ status: "error" }, { status: 503, headers });
   }
 }

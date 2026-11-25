@@ -4,8 +4,8 @@
 
 ## 외부 설정
 
-1. [시트 안내](funding-sheet-setup.md)에 따라 Apps Script 웹 앱과 Vercel 서버 환경변수를 설정합니다. 원본 응답 탭을 웹에 게시하지 않습니다.
-2. `/api/funding`에서 실제 0원·0건의 `ready` 응답을 확인하고, 확인 완료·공개 동의·정정·취소 흐름을 비식별 검증값으로 점검합니다.
+1. [시트 안내](funding-sheet-setup.md)에 따라 Apps Script 트리거와 비공개 Blob 및 Vercel 서버 환경변수를 설정합니다. 원본 응답 탭을 웹에 게시하지 않습니다.
+2. `/api/funding`에서 시트와 일치하는 `ready` 응답을 확인하고, 확인 완료·공개 동의·정정·취소 흐름을 비식별 검증값으로 점검합니다.
 3. 외부 구글 폼의 사용처·개인정보 공개 동의·이메일 안내가 페이지와 일치하는지 운영자가 확인합니다.
 4. Vercel에서는 저장소 루트를 Next.js 프로젝트로 설정하고 `pnpm install --frozen-lockfile`, `pnpm build`를 사용합니다. 배포 후 HTTPS에서 폼 이동·계좌 복사·집계 갱신을 확인합니다.
 
