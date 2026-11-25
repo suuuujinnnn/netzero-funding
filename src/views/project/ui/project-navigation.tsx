@@ -113,6 +113,7 @@ export function ProjectNavigation({
             {projectTabs.map(([id, label], index) => (
               <a
                 key={id}
+                className={id === "history" ? "b-site-menu-history" : undefined}
                 ref={(node) => {
                   links.current[index] = node;
                 }}

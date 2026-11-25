@@ -741,6 +741,26 @@
   padding: 10px 13px;
   font-size: 12px;
 }
+.production-site .b-topbar .b-site-menu > .b-site-menu-history {
+  position: relative;
+}
+.production-site
+  .b-topbar
+  .b-site-menu
+  > .b-site-menu-history:not([aria-current]) {
+  color: var(--green);
+  font-weight: 750;
+}
+.production-site .b-topbar .b-site-menu > .b-site-menu-history::after {
+  position: absolute;
+  top: 9px;
+  right: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e9b85e;
+  content: "";
+}
 .production-site .b-topbar .b-site-menu > a:last-child {
   margin-left: 8px;
   padding-inline: 18px;
