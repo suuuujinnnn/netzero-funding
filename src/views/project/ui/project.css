@@ -949,9 +949,11 @@
 @keyframes puzzle-photo-reveal {
   from {
     fill-opacity: 1;
+    stroke-opacity: 1;
   }
   to {
     fill-opacity: 0;
+    stroke-opacity: 0;
   }
 }
 .history-detail {

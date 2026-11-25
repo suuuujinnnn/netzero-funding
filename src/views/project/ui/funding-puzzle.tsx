@@ -137,6 +137,7 @@ export function FundingPuzzle({
                     : undefined
                 }
                 stroke={isFilled ? "#234a3c" : "#a1c2a0"}
+                strokeOpacity={isFilled ? 0 : 1}
                 strokeWidth={5}
                 strokeLinejoin="round"
               />
