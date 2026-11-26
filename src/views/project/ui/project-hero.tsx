@@ -1,19 +1,48 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode, Ref } from "react";
 import { ArrowDown, ArrowUpRight, Leaf, Sparkles, Sun } from "lucide-react";
 import { projectTabHref } from "../project-tabs";
 import { FUNDING_TARGET, type FundingState } from "./funding-data";
+import { FundingGoalNotice } from "./funding-goal-notice";
 import { FundingStatus } from "./funding-status";
 const number = new Intl.NumberFormat("ko-KR");
 
 export function ProjectHero({
   state,
   image,
+  goalReached,
+  playConfetti,
 }: {
   state: FundingState;
   image: ReactNode;
+  goalReached: boolean;
+  playConfetti: Ref<HTMLDivElement>;
 }) {
   return (
     <section className="garden-board garden-hero mk-wrap">
+      {goalReached && (
+        <div className="funding-confetti" aria-hidden="true" ref={playConfetti}>
+          {(["left", "right"] as const).map((side) => (
+            <div key={side} className={`funding-confetti-origin ${side}`}>
+              {Array.from({ length: 48 }, (_, index) => (
+                <span
+                  key={index}
+                  style={
+                    {
+                      "--spread": `${18 + ((index * 29) % 68)}vw`,
+                      "--lift": `${24 + ((index * 17) % 49)}vh`,
+                      "--spin": `${100 + ((index * 47) % 330)}deg`,
+                      "--delay": `${((index * 19) % 11) * 15}ms`,
+                      "--color": ["#ffcb47", "#70c777", "#e56d91", "#77a9ef"][
+                        index % 4
+                      ],
+                    } as CSSProperties
+                  }
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
       <div className="garden-heading">
         <p className="dev-kicker">
           <span /> OUR FIRST GREEN CLASSROOM
@@ -68,7 +97,9 @@ export function ProjectHero({
         </h2>
         <p>목표 {number.format(FUNDING_TARGET)}원</p>
         <div
-          className="live-progress"
+          className={
+            goalReached ? "live-progress is-achieved" : "live-progress"
+          }
           role="progressbar"
           aria-label="목표 모금액 대비 확인 완료 금액"
           aria-valuemin={0}
@@ -94,6 +125,7 @@ export function ProjectHero({
             : "확인된 모금 현황을 불러옵니다."}
         </p>
         <p>모금기간 2026.11.23 — 2026.12.06</p>
+        {goalReached && <FundingGoalNotice />}
         <a className="mk-button" href={projectTabHref("donate")}>
           기부하기 <ArrowUpRight size={18} />
         </a>

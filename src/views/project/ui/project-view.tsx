@@ -4,7 +4,6 @@ import { LiveProject } from "./live-project";
 import { OverviewPanel } from "./overview-panel";
 import { PlanPanel } from "./plan-panel";
 import { PartnersPanel } from "./partners-panel";
-import { DonatePanel } from "./donate-panel";
 import { ProjectHome } from "./project-home";
 import { EffectsContent } from "./effects/effects-content";
 import type { ProjectTab } from "../project-tabs";
@@ -78,7 +77,6 @@ export function ProjectView({ initialTab }: { initialTab: ProjectTab }) {
           ),
           plan: <PlanPanel />,
           partners: <PartnersPanel />,
-          donate: <DonatePanel />,
         }}
       />
       <footer className="site-footer">

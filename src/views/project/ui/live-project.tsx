@@ -1,10 +1,17 @@
 "use client";
-import { useEffect, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import { ProjectNavigation } from "./project-navigation";
 import { ProjectHero } from "./project-hero";
 import type { FundingState } from "./funding-data";
 import { HistoryPanel } from "./history-panel";
-import { loadFunding } from "./funding-data";
+import { FUNDING_TARGET, loadFunding } from "./funding-data";
+import { DonatePanel } from "./donate-panel";
 import type { ProjectTab } from "../project-tabs";
 
 export function LiveProject({
@@ -23,7 +30,6 @@ export function LiveProject({
     effects: ReactNode;
     plan: ReactNode;
     partners: ReactNode;
-    donate: ReactNode;
   };
 }) {
   const [state, setState] = useState<FundingState>(() => ({
@@ -76,6 +82,25 @@ export function LiveProject({
       active?.abort();
     };
   }, []);
+  const goalReached = (state.data?.amount ?? 0) >= FUNDING_TARGET;
+  const celebrated = useRef(false);
+  const playConfetti = useCallback((node: HTMLDivElement | null) => {
+    if (!node || celebrated.current) return;
+    celebrated.current = true;
+    if (window.matchMedia("(max-width: 760px)").matches) {
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
+      node
+        .closest(".garden-hero")
+        ?.querySelector(".garden-join")
+        ?.scrollIntoView({
+          behavior: reducedMotion.matches ? "instant" : "smooth",
+          block: "center",
+        });
+    }
+    node.dataset.play = "true";
+  }, []);
   return (
     <ProjectNavigation
       initialTab={initialTab}
@@ -83,12 +108,21 @@ export function LiveProject({
       home={
         <>
           <div className="formal-classroom-hero">
-            <ProjectHero state={state} image={heroImage} />
+            <ProjectHero
+              state={state}
+              image={heroImage}
+              goalReached={goalReached}
+              playConfetti={playConfetti}
+            />
           </div>
           {homeContent}
         </>
       }
-      panels={{ ...panels, history: <HistoryPanel state={state} /> }}
+      panels={{
+        ...panels,
+        history: <HistoryPanel state={state} />,
+        donate: <DonatePanel goalReached={goalReached} />,
+      }}
     />
   );
 }

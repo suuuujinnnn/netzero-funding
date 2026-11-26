@@ -828,6 +828,101 @@
   border-radius: inherit;
   background: #6f8c45;
 }
+.production-site {
+  --funding-achieved-accent: #e9b85e;
+}
+.production-site .live-progress.is-achieved > span {
+  background: var(--funding-achieved-accent);
+}
+.production-site .funding-goal-notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0 14px;
+  padding: 13px 14px;
+  border-radius: 10px;
+  background: #fbf0d8;
+  color: #4c3718;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.production-site .funding-goal-notice strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 1.2em;
+  font-weight: 800;
+}
+.production-site .funding-goal-check {
+  display: grid;
+  flex: 0 0 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--funding-achieved-accent);
+  color: #4c3718;
+}
+.production-site #donate > .funding-goal-notice {
+  max-width: 38rem;
+  margin: 0 auto 28px;
+  padding: 20px 24px;
+  font-size: 15px;
+}
+.funding-confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: clip;
+  pointer-events: none;
+}
+.funding-confetti-origin {
+  position: absolute;
+  bottom: 22%;
+}
+.funding-confetti-origin.left {
+  left: -10px;
+  --direction: 1;
+}
+.funding-confetti-origin.right {
+  right: -10px;
+  --direction: -1;
+}
+.funding-confetti-origin span {
+  position: absolute;
+  --travel: calc(var(--spread) * var(--direction));
+  width: 7px;
+  height: 11px;
+  border-radius: 1px;
+  background: var(--color);
+  opacity: 0;
+}
+.funding-confetti-origin span:nth-child(3n) {
+  height: 7px;
+  border-radius: 50%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .funding-confetti[data-play="true"] span {
+    animation: funding-confetti-burst 1.85s var(--delay) both;
+  }
+}
+@keyframes funding-confetti-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+    animation-timing-function: cubic-bezier(0.18, 0.72, 0.38, 1);
+  }
+  43% {
+    transform: translate(calc(var(--travel) * 0.83), calc(var(--lift) * -1))
+      rotate(calc(var(--spin) * 0.5));
+    animation-timing-function: ease-in;
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--travel), 16vh) rotate(var(--spin));
+  }
+}
 .production-site .garden-join .funding-status {
   margin-top: 14px;
   color: #475740;

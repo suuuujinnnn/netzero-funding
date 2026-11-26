@@ -1110,11 +1110,6 @@
   font-size: 13px;
   line-height: 1.75;
 }
-.aside-back {
-  width: 100%;
-  margin-top: 19px;
-  font-size: 12px;
-}
 .bank-box strong {
   color: var(--green);
 }
@@ -1223,6 +1218,13 @@
 }
 .project-page .form-link:hover {
   background: #315d4b;
+}
+.project-page .form-link:disabled {
+  width: 100%;
+  border-color: #d4d8d0;
+  background: #e8ebe4;
+  color: #536052;
+  cursor: not-allowed;
 }
 .participation-empty {
   margin-top: 28px;
